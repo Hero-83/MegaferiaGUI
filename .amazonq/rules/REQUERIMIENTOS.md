@@ -69,30 +69,30 @@
 - [ ] Notificar resultado de operaciones al usuario
 - [ ] Limpiar componentes tras operación exitosa
 - [ ] Actualizar ComboBox tras creación exitosa
-- [ ] Ejecutar vista mediante archivo Main separado
+- [x] Ejecutar vista mediante archivo Main separado - Main.java implementado
 
 ### 🎮 Controlador (Controller)
-- [ ] Implementar sistema de respuestas y códigos de estado
-- [ ] Controlador para crear Stand
-- [ ] Controlador para registrar Autor
-- [ ] Controlador para registrar Gerente
-- [ ] Controlador para registrar Narrador
-- [ ] Controlador para registrar Editorial
-- [ ] Controlador para registrar Libro (por tipo)
-- [ ] Controlador para compra de Stand
-- [ ] Controlador para visualizar Stands
-- [ ] Controlador para visualizar Personas
-- [ ] Controlador para visualizar Editoriales
-- [ ] Controlador para visualizar Libros por Tipo
-- [ ] Controlador para visualizar Libros por Autor
-- [ ] Controlador para visualizar Libros por Formato
-- [ ] Controlador para visualizar Autores con más Libros
-- [ ] Retornar copias de objetos (patrón Prototype)
+- [x] Implementar sistema de respuestas y códigos de estado - Response/Status implementados
+- [x] Controlador para crear Stand - StandController implementado
+- [x] Controlador para registrar Autor - PersonController implementado
+- [x] Controlador para registrar Gerente - PersonController implementado
+- [x] Controlador para registrar Narrador - PersonController implementado
+- [x] Controlador para registrar Editorial - PublisherController implementado
+- [x] Controlador para registrar Libro (por tipo) - BookController implementado
+- [x] Controlador para compra de Stand - PurchaseController implementado
+- [x] Controlador para visualizar Stands - StandController implementado
+- [x] Controlador para visualizar Personas - PersonController implementado
+- [x] Controlador para visualizar Editoriales - PublisherController implementado
+- [x] Controlador para visualizar Libros por Tipo - BookController implementado
+- [x] Controlador para visualizar Libros por Autor - BookController implementado
+- [x] Controlador para visualizar Libros por Formato - BookController implementado
+- [x] Controlador para visualizar Autores con más Libros - PersonController.obtenerAutoresConMasLibros() implementado
+- [x] Retornar copias de objetos (patrón Prototype) - implementado en controladores
 
 ### 🗄️ Modelo (Model)
-- [x] Diseñar modelos siguiendo principios SOLID (estructura básica implementada)
-- [x] Simular almacenamiento de datos (ArrayLists en MegaferiaFrame)
-- [ ] Implementar validaciones de negocio
+- [x] Diseñar modelos siguiendo principios SOLID (estructura completa implementada)
+- [x] Simular almacenamiento de datos (MegaferiaDataStore con Singleton)
+- [x] Implementar validaciones de negocio - validaciones en controladores
 
 ## 🎯 Principios SOLID
 
@@ -149,7 +149,7 @@
 - [ ] Enlace enviado por Brightspace
 
 ### Estructura del Proyecto
-- [ ] Arquitectura MVC implementada
-- [ ] Archivo Main separado
-- [ ] Organización clara de paquetes
+- [x] Arquitectura MVC implementada - controladores, modelo y vista separados
+- [x] Archivo Main separado - Main.java implementado
+- [x] Organización clara de paquetes - core.controller, core.model, core.view, main
 - [ ] Documentación actualizada

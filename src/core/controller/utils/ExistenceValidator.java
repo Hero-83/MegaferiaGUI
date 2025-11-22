@@ -1,6 +1,6 @@
-package Manage;
+package core.controller.utils;
 
-import core.*;
+import core.model.*;
 import java.util.ArrayList;
 
 public class ExistenceValidator {

@@ -1,12 +1,9 @@
+package core.controller.utils;
 
-/*
-
-package Manage;
-
-import core.*;
+import core.model.*;
 import java.util.ArrayList;
 
-public class UniqueValidator {
+public class ValidationUtils {
 
     public static boolean isUniqueStandId(long id, ArrayList<Stand> stands) {
         for (Stand stand : stands) {
@@ -16,6 +13,7 @@ public class UniqueValidator {
         }
         return true;
     }
+    
     public static boolean isUniquePersonId(long id, ArrayList<? extends Person> persons) {
         for (Person person : persons) {
             if (person.getId() == id) {
@@ -24,6 +22,7 @@ public class UniqueValidator {
         }
         return true;
     }
+    
     public static boolean isUniqueNIT(String nit, ArrayList<Publisher> publishers) {
         for (Publisher publisher : publishers) {
             if (publisher.getNit().equals(nit)) {
@@ -42,4 +41,3 @@ public class UniqueValidator {
         return true;
     }
 }
-*/

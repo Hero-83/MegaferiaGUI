@@ -1,4 +1,4 @@
-package Manage;
+package core.controller.utils;
 public class FormatValidator {
 
     public static boolean isValidIdFormat(String idStr) {

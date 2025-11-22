@@ -10,6 +10,7 @@ import core.model.Manager;
 import core.model.MegaferiaDataStore;
 import core.model.Narrator;
 import core.model.Person;
+import core.controller.SortUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,5 +136,19 @@ public class PersonController {
         }
 
         return Response.ok(narrators);
+    }
+    
+    public Response<List<Author>> obtenerAutoresConMasLibros() {
+        List<Person> people = store.getPeopleOrderedById();
+        ArrayList<Author> authors = new ArrayList<>();
+
+        for (Person p : people) {
+            if (p instanceof Author) {
+                authors.add((Author) p);
+            }
+        }
+        
+        ArrayList<Author> sortedAuthors = SortUtils.getSortedAuthorsByBookCount(authors);
+        return Response.ok(sortedAuthors);
     }
 }

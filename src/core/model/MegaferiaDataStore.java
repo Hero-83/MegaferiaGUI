@@ -154,69 +154,7 @@ public class MegaferiaDataStore {
         books.add(b);
     }
 
-    public List<Book> getAllBooks() {
-        return getBooksOrderedByIsbn();
-    }
-
-    public List<Book> getBooksOrderedByIsbn() {
-        List<Book> ordered = new ArrayList<>(books);
-
-        for (int i = 0; i < ordered.size(); i++) {
-            for (int j = i + 1; j < ordered.size(); j++) {
-                if (ordered.get(i).getIsbn().compareTo(ordered.get(j).getIsbn()) > 0) {
-                    Book aux = ordered.get(i);
-                    ordered.set(i, ordered.get(j));
-                    ordered.set(j, aux);
-                }
-            }
-        }
-        return ordered;
-    }
-
-    public List<Book> getBooksByAuthor(Author a) {
-        List<Book> result = new ArrayList<>();
-
-        for (Book b : books) {
-            if (b.getAuthors().contains(a)) {
-                result.add(b);
-            }
-        }
-
-        // ordenar
-        for (int i = 0; i < result.size(); i++) {
-            for (int j = i + 1; j < result.size(); j++) {
-                if (result.get(i).getIsbn().compareTo(result.get(j).getIsbn()) > 0) {
-                    Book aux = result.get(i);
-                    result.set(i, result.get(j));
-                    result.set(j, aux);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    public List<Book> getBooksByFormat(Class<? extends Book> bookType) {
-        List<Book> result = new ArrayList<>();
-
-        // Filtrar por tipo de libro (Impreso, Digital, Audiolibro, etc.)
-        for (Book b : books) {
-            if (bookType.isInstance(b)) {
-                result.add(b);
-            }
-        }
-
-        // Ordenar por ISBN
-        for (int i = 0; i < result.size(); i++) {
-            for (int j = i + 1; j < result.size(); j++) {
-                if (result.get(i).getIsbn().compareTo(result.get(j).getIsbn()) > 0) {
-                    Book aux = result.get(i);
-                    result.set(i, result.get(j));
-                    result.set(j, aux);
-                }
-            }
-        }
-
-        return result;
+    public List<Book> getBooks() {
+        return new ArrayList<>(books);
     }
 }

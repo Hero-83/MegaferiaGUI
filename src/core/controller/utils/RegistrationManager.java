@@ -1,6 +1,6 @@
-package Manage;
+package core.controller.utils;
 
-import core.*;
+import core.model.*;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +32,7 @@ public class RegistrationManager {
         double price = Double.parseDouble(priceStr.trim());
         
         // Validar unicidad de ID
-        if (!UniqueValidator.isUniqueStandId(id, stands)) {
+        if (!ValidationUtils.isUniqueStandId(id, stands)) {
             return "Error: ID de stand ya existe";
         }
         
@@ -63,7 +63,7 @@ public class RegistrationManager {
         long id = Long.parseLong(idStr.trim());
         
         // Validar unicidad de ID
-        if (!UniqueValidator.isUniquePersonId(id, authors)) {
+        if (!ValidationUtils.isUniquePersonId(id, authors)) {
             return "Error: ID de persona ya existe";
         }
         
@@ -94,7 +94,7 @@ public class RegistrationManager {
         long id = Long.parseLong(idStr.trim());
         
         // Validar unicidad de ID
-        if (!UniqueValidator.isUniquePersonId(id, managers)) {
+        if (!ValidationUtils.isUniquePersonId(id, managers)) {
             return "Error: ID de persona ya existe";
         }
         
@@ -125,7 +125,7 @@ public class RegistrationManager {
         long id = Long.parseLong(idStr.trim());
         
         // Validar unicidad de ID
-        if (!UniqueValidator.isUniquePersonId(id, narrators)) {
+        if (!ValidationUtils.isUniquePersonId(id, narrators)) {
             return "Error: ID de persona ya existe";
         }
         
@@ -155,7 +155,7 @@ public class RegistrationManager {
         }
         
         // Validar unicidad de NIT
-        if (!UniqueValidator.isUniqueNIT(nit, publishers)) {
+        if (!ValidationUtils.isUniqueNIT(nit, publishers)) {
             return "Error: NIT ya existe";
         }
         
