@@ -25,7 +25,6 @@ public class PersonController {
         this.store = MegaferiaDataStore.getInstance();
     }
 
-    
     private Response<Void> validarPersona(long id, String firstname, String lastname) {
 
         if (id < 0 || String.valueOf(id).length() > 15) {
@@ -135,5 +134,34 @@ public class PersonController {
         }
 
         return Response.ok(narrators);
+    }
+
+    public Response<List<Author>> obtenerAutoresConMasLibrosEnDiferentesEditoriales() {
+        List<Person> people = store.getPeopleOrderedById();
+        List<Author> resultado = new ArrayList<>();
+
+        int maxPublishers = -1;
+
+        for (Person p : people) {
+            if (p instanceof Author) {
+                Author a = (Author) p;
+                int qty = a.getPublisherQuantity(); // numero de editoriales distintas
+
+                if (qty > maxPublishers) {
+                    maxPublishers = qty;
+                    resultado.clear();
+                    resultado.add(a);
+                } else if (qty == maxPublishers) {
+                    resultado.add(a);
+                }
+            }
+        }
+
+        if (maxPublishers <= 0) {
+            // Nadie tiene libros con editoriales diferentes
+            return Response.ok(new ArrayList<>());
+        }
+
+        return Response.ok(resultado);
     }
 }

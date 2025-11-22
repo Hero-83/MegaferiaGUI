@@ -53,13 +53,13 @@ public class BookController {
         for (int i = 9; i < 15; i++) if (!Character.isDigit(isbn.charAt(i))) return false;
         if (isbn.charAt(15) != '-') return false;
 
-        // último dígito
+        // ultimo dígito
         if (!Character.isDigit(isbn.charAt(16))) return false;
 
         return true;
     }
 
-    // Resuelve IDs de autores -> objetos Author, validando existencia y repetidos
+    // Resuelve IDs de autores: objetos Author, validando existencia y repetidos
     private Response<List<Author>> resolverAutores(List<Long> authorIds) {
         if (authorIds == null || authorIds.isEmpty()) {
             return Response.badRequest("Debe seleccionar al menos un autor.");
@@ -200,7 +200,6 @@ public class BookController {
 
         Publisher publisher = store.findPublisherByNit(publisherNit);
 
-        // El hipervínculo puede ser vacío según el enunciado
         DigitalBook book;
         if (hyperlink == null || hyperlink.trim().isEmpty()) {
             book = new DigitalBook(title, new ArrayList<>(authors), isbn, genre, format, value, publisher);
