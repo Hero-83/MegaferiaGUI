@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package core.controller;
 
 import core.controller.utils.Response;
@@ -26,7 +23,6 @@ public class PersonController {
         this.store = MegaferiaDataStore.getInstance();
     }
 
-    
     private Response<Void> validarPersona(long id, String firstname, String lastname) {
 
         if (id < 0 || String.valueOf(id).length() > 15) {
