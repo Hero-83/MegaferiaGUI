@@ -20,6 +20,8 @@ import core.controller.PublisherController;
 import core.controller.BookController;
 import core.controller.PurchaseController;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
@@ -149,19 +151,19 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        comboStandCompra = new javax.swing.JComboBox<>();
+        comboPublisherCompra = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnAgregarEditorialCompra = new javax.swing.JButton();
+        btnComprarStand = new javax.swing.JButton();
+        btnEliminarEditorialCompra = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        txtAreaEditorialesSeleccionadas = new javax.swing.JTextArea();
+        btnAgregarStandCompra = new javax.swing.JButton();
+        btnEliminarStandCompra = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtAreaStandsSeleccionados = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -172,7 +174,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblStands = new javax.swing.JTable();
         jButton14 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -765,11 +767,21 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Libro", jPanel5);
 
-        jComboBox7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno..." }));
+        comboStandCompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        comboStandCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno..." }));
+        comboStandCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboStandCompraActionPerformed(evt);
+            }
+        });
 
-        jComboBox8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno..." }));
+        comboPublisherCompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        comboPublisherCompra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno..." }));
+        comboPublisherCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPublisherCompraActionPerformed(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel23.setText("Editoriales");
@@ -777,57 +789,57 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel24.setText("ID Stands");
 
-        jButton5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton5.setText("Agregar Editorial");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarEditorialCompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnAgregarEditorialCompra.setText("Agregar Editorial");
+        btnAgregarEditorialCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAgregarEditorialCompraActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton6.setText("Comprar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnComprarStand.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnComprarStand.setText("Comprar");
+        btnComprarStand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnComprarStandActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton7.setText("Eliminar Editorial");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarEditorialCompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnEliminarEditorialCompra.setText("Eliminar Editorial");
+        btnEliminarEditorialCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnEliminarEditorialCompraActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAreaEditorialesSeleccionadas.setColumns(20);
+        txtAreaEditorialesSeleccionadas.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtAreaEditorialesSeleccionadas.setRows(5);
+        txtAreaEditorialesSeleccionadas.setEnabled(false);
+        jScrollPane1.setViewportView(txtAreaEditorialesSeleccionadas);
 
-        jButton10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton10.setText("Agregar Stand");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarStandCompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnAgregarStandCompra.setText("Agregar Stand");
+        btnAgregarStandCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnAgregarStandCompraActionPerformed(evt);
             }
         });
 
-        jButton11.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton11.setText("Eliminar Stand");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarStandCompra.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnEliminarStandCompra.setText("Eliminar Stand");
+        btnEliminarStandCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnEliminarStandCompraActionPerformed(evt);
             }
         });
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextArea3.setRows(5);
-        jTextArea3.setEnabled(false);
-        jScrollPane3.setViewportView(jTextArea3);
+        txtAreaStandsSeleccionados.setColumns(20);
+        txtAreaStandsSeleccionados.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtAreaStandsSeleccionados.setRows(5);
+        txtAreaStandsSeleccionados.setEnabled(false);
+        jScrollPane3.setViewportView(txtAreaStandsSeleccionados);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -837,7 +849,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(btnComprarStand)
                         .addGap(321, 321, 321))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -845,24 +857,24 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboPublisherCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton5)
+                                .addComponent(btnAgregarEditorialCompra)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton7)))
+                                .addComponent(btnEliminarEditorialCompra)))
                         .addGap(189, 189, 189))))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboStandCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton10)
+                        .addComponent(btnAgregarStandCompra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton11)))
+                        .addComponent(btnEliminarStandCompra)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -873,25 +885,25 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel24)
-                            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboStandCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(226, 226, 226)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboPublisherCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAgregarStandCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarStandCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3)
                         .addGap(8, 8, 8)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnAgregarEditorialCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarEditorialCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnComprarStand, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );
 
@@ -1007,7 +1019,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Show Personas", jPanel8);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblStands.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1026,7 +1038,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTable3);
+        jScrollPane6.setViewportView(tblStands);
 
         jButton14.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jButton14.setText("Consultar");
@@ -1425,13 +1437,97 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
     private void btnCrearStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearStandActionPerformed
         // TODO add your handling code here:
-        long id = Long.parseLong(txtStandId.getText());
-        double price = Double.parseDouble(txtStandPrecio.getText());
+        try {
+            // Obtener valores desde los JTextField
+            long id = Long.parseLong(txtStandId.getText().trim());
+            double price = Double.parseDouble(txtStandPrecio.getText().trim());
 
-        this.stands.add(new Stand(id, price));
+            // Llamar al controlador
+            var response = standController.crearStand(id, price);
 
-        jComboBox7.addItem("" + id);
+            // Manejo de respuesta
+            if (response.isOk()) {
+                JOptionPane.showMessageDialog(this, response.getMessage());
+
+                // Limpiar campos
+                txtStandId.setText("");
+                txtStandPrecio.setText("");
+
+                // Actualizar tablas y combobox que dependan de los stands
+                actualizarTablaStands();
+                actualizarComboStands();
+            } else {
+                JOptionPane.showMessageDialog(
+                        this,
+                        response.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "ID y Precio deben ser valores numéricos válidos.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+
     }//GEN-LAST:event_btnCrearStandActionPerformed
+
+    private void actualizarTablaStands() {
+        var response = standController.obtenerStands();
+        if (!response.isOk()) {
+            return;
+        }
+
+        List<Stand> stands = response.getData();
+
+        DefaultTableModel model = (DefaultTableModel) tblStands.getModel();
+        model.setRowCount(0); // limpiar tabla
+
+        for (Stand s : stands) {
+
+            // ¿Está comprado? -> si tiene al menos una editorial asociada
+            boolean comprado = (s.getPublishers() != null && !s.getPublishers().isEmpty());
+
+            // Construir texto con los nombres de las editoriales
+            String editoriales = "";
+            if (s.getPublishers() != null) {
+                for (Publisher p : s.getPublishers()) {
+                    if (p != null && p.getName() != null) {
+                        if (!editoriales.isEmpty()) {
+                            editoriales += ", ";
+                        }
+                        editoriales += p.getName();
+                    }
+                }
+            }
+
+            model.addRow(new Object[]{
+                s.getId(),
+                s.getPrice(),
+                comprado ? "Sí" : "No",
+                editoriales
+            });
+        }
+    }
+
+    private void actualizarComboStands() {
+        var response = standController.obtenerStands();
+        if (!response.isOk()) {
+            return;
+        }
+
+        List<Stand> stands = response.getData();
+
+        comboStandCompra.removeAllItems();
+        for (Stand s : stands) {
+            comboStandCompra.addItem(String.valueOf(s.getId()));
+        }
+    }
+
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -1486,7 +1582,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         this.publishers.add(new Publisher(nit, name, address, manager));
 
         jComboBox5.addItem(name + " (" + nit + ")");
-        jComboBox8.addItem(name + " (" + nit + ")");
+        comboPublisherCompra.addItem(name + " (" + nit + ")");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1561,61 +1657,149 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnAgregarStandCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarStandCompraActionPerformed
         // TODO add your handling code here:
-        String stand = jComboBox7.getItemAt(jComboBox7.getSelectedIndex());
-        jTextArea3.append(stand + "\n");
-    }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        String selected = (String) comboStandCompra.getSelectedItem();
+
+        if (selected == null || selected.equals("Seleccione uno...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un stand válido.");
+            return;
+        }
+
+        // Evitar repetidos
+        String contenido = txtAreaStandsSeleccionados.getText();
+        if (contenido.contains(selected + "\n")) {
+            JOptionPane.showMessageDialog(this, "Este stand ya fue agregado.");
+            return;
+        }
+
+        txtAreaStandsSeleccionados.append(selected + "\n");
+    }//GEN-LAST:event_btnAgregarStandCompraActionPerformed
+
+    private void btnEliminarStandCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarStandCompraActionPerformed
         // TODO add your handling code here:
-        String stand = jComboBox7.getItemAt(jComboBox7.getSelectedIndex());
-        jTextArea3.setText(jTextArea3.getText().replace(stand + "\n", ""));
-    }//GEN-LAST:event_jButton11ActionPerformed
+        String selected = (String) comboStandCompra.getSelectedItem();
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (selected == null || selected.equals("Seleccione uno...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un stand para eliminar.");
+            return;
+        }
+
+        String texto = txtAreaStandsSeleccionados.getText();
+        txtAreaStandsSeleccionados.setText(texto.replace(selected + "\n", ""));
+    }//GEN-LAST:event_btnEliminarStandCompraActionPerformed
+
+    private void btnAgregarEditorialCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEditorialCompraActionPerformed
         // TODO add your handling code here:
-        String publisher = jComboBox8.getItemAt(jComboBox8.getSelectedIndex());
-        jTextArea1.append(publisher + "\n");
-    }//GEN-LAST:event_jButton5ActionPerformed
+        String selected = (String) comboPublisherCompra.getSelectedItem();
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if (selected == null || selected.equals("Seleccione uno...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una editorial válida.");
+            return;
+        }
+
+        String contenido = txtAreaEditorialesSeleccionadas.getText();
+        if (contenido.contains(selected + "\n")) {
+            JOptionPane.showMessageDialog(this, "Esta editorial ya fue agregada.");
+            return;
+        }
+
+        txtAreaEditorialesSeleccionadas.append(selected + "\n");
+    }//GEN-LAST:event_btnAgregarEditorialCompraActionPerformed
+
+    private void btnEliminarEditorialCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEditorialCompraActionPerformed
         // TODO add your handling code here:
-        String publisher = jComboBox8.getItemAt(jComboBox8.getSelectedIndex());
-        jTextArea1.setText(jTextArea1.getText().replace(publisher + "\n", ""));
-    }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        String selected = (String) comboPublisherCompra.getSelectedItem();
+
+        if (selected == null || selected.equals("Seleccione uno...")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una editorial para eliminar.");
+            return;
+        }
+
+        String texto = txtAreaEditorialesSeleccionadas.getText();
+        txtAreaEditorialesSeleccionadas.setText(texto.replace(selected + "\n", ""));
+    }//GEN-LAST:event_btnEliminarEditorialCompraActionPerformed
+
+    private void btnComprarStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarStandActionPerformed
         // TODO add your handling code here:
-        String[] standIds = jTextArea3.getText().split("\n");
-        String[] publishersData = jTextArea1.getText().split("\n");
 
-        ArrayList<Stand> stands = new ArrayList<>();
-        for (String standId : standIds) {
-            for (Stand stand : this.stands) {
-                if (stand.getId() == Long.parseLong(standId)) {
-                    stands.add(stand);
+        // Extraer IDs de stands
+        String[] standLines = txtAreaStandsSeleccionados.getText().split("\n");
+        List<Long> standIds = new ArrayList<>();
+
+        for (String line : standLines) {
+            if (!line.trim().isEmpty()) {
+                try {
+                    standIds.add(Long.parseLong(line.trim()));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Stand inválido: " + line);
+                    return;
                 }
             }
         }
 
-        ArrayList<Publisher> publishers = new ArrayList<>();
-        for (String publisherData : publishersData) {
-            String publisherNit = publisherData.split(" ")[1].replace("(", "").replace(")", "");
-            for (Publisher publisher : this.publishers) {
-                if (publisher.getNit().equals(publisherNit)) {
-                    publishers.add(publisher);
-                }
+        // Extraer NITs de editoriales
+        String[] publisherLines = txtAreaEditorialesSeleccionadas.getText().split("\n");
+        List<String> publisherNits = new ArrayList<>();
+
+        for (String nit : publisherLines) {
+            if (!nit.trim().isEmpty()) {
+                publisherNits.add(nit.trim());
             }
         }
 
-        for (Stand stand : stands) {
-            for (Publisher publisher : publishers) {
-                stand.addPublisher(publisher);
-                publisher.addStand(stand);
-            }
+        // Llamar al controlador
+        var response = purchaseController.comprarStands(standIds, publisherNits);
+
+        if (response.isOk()) {
+            JOptionPane.showMessageDialog(this, response.getMessage());
+
+            // Limpiar textareas
+            txtAreaStandsSeleccionados.setText("");
+            txtAreaEditorialesSeleccionadas.setText("");
+
+            // Actualizar tabla en Show Stands
+            actualizarTablaStands();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    response.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnComprarStandActionPerformed
+
+    private void actualizarComboStandsCompra() {
+        var response = standController.obtenerStands();
+        if (!response.isOk()) {
+            return;
+        }
+
+        comboStandCompra.removeAllItems();
+        comboStandCompra.addItem("Seleccione uno...");
+
+        for (Stand s : response.getData()) {
+            comboStandCompra.addItem(String.valueOf(s.getId()));
+        }
+    }
+
+    private void actualizarComboEditorialesCompra() {
+        var response = publisherController.obtenerEditoriales();
+        if (!response.isOk()) {
+            return;
+        }
+
+        comboPublisherCompra.removeAllItems();
+        comboPublisherCompra.addItem("Seleccione uno...");
+
+        for (Publisher p : response.getData()) {
+            comboPublisherCompra.addItem(p.getNit());
+        }
+    }
+
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
@@ -1643,7 +1827,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblStands.getModel();
         model.setRowCount(0);
         for (Stand stand : this.stands) {
             String publishers = "";
@@ -1796,29 +1980,29 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
+    private void comboStandCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStandCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboStandCompraActionPerformed
+
+    private void comboPublisherCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPublisherCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPublisherCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        System.setProperty("flatlaf.useNativeLibrary", "false");
+    
 
-        try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MegaferiaFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarEditorialCompra;
+    private javax.swing.JButton btnAgregarStandCompra;
+    private javax.swing.JButton btnComprarStand;
     private javax.swing.JButton btnCrearStand;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
+    private javax.swing.JButton btnEliminarEditorialCompra;
+    private javax.swing.JButton btnEliminarStandCompra;
+    private javax.swing.JComboBox<String> comboPublisherCompra;
+    private javax.swing.JComboBox<String> comboStandCompra;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -1831,9 +2015,6 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -1844,8 +2025,6 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1902,13 +2081,10 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -1922,6 +2098,9 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tblStands;
+    private javax.swing.JTextArea txtAreaEditorialesSeleccionadas;
+    private javax.swing.JTextArea txtAreaStandsSeleccionados;
     private javax.swing.JTextField txtStandId;
     private javax.swing.JTextField txtStandPrecio;
     // End of variables declaration//GEN-END:variables
