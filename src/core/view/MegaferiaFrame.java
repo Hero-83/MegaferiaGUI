@@ -4,7 +4,6 @@
  */
 package core.view;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import core.model.Publisher;
 import core.model.Audiobook;
 import core.model.Author;
@@ -19,6 +18,8 @@ import core.controller.PersonController;
 import core.controller.PublisherController;
 import core.controller.BookController;
 import core.controller.PurchaseController;
+import core.model.Person;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -99,23 +100,23 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        TxtIDPersona = new javax.swing.JTextField();
+        TxtNombrePersona = new javax.swing.JTextField();
+        btnCrearAutor = new javax.swing.JButton();
+        txtApellidoPersona = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        btnCrearGerente = new javax.swing.JButton();
+        btnCrearNarrador = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        TextNitEditorial = new javax.swing.JTextField();
+        TextNombreEditorial = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        TextNitDireccion = new javax.swing.JTextField();
+        btnCrearEditorial = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboGerenteEditorial = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
@@ -166,12 +167,12 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         txtAreaStandsSeleccionados = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton12 = new javax.swing.JButton();
+        tblEditoriales = new javax.swing.JTable();
+        btnConsultarEditoriales = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton13 = new javax.swing.JButton();
+        tblPersonas = new javax.swing.JTable();
+        btnConsultarPersonas = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblStands = new javax.swing.JTable();
@@ -245,54 +246,54 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel4.setText("ID");
 
-        jTextField3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField3.setToolTipText("");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        TxtIDPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TxtIDPersona.setToolTipText("");
+        TxtIDPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                TxtIDPersonaActionPerformed(evt);
             }
         });
 
-        jTextField4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField4.setToolTipText("");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        TxtNombrePersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TxtNombrePersona.setToolTipText("");
+        TxtNombrePersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                TxtNombrePersonaActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton2.setText("Crear Autor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearAutor.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearAutor.setText("Crear Autor");
+        btnCrearAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCrearAutorActionPerformed(evt);
             }
         });
 
-        jTextField5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField5.setToolTipText("");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtApellidoPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtApellidoPersona.setToolTipText("");
+        txtApellidoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtApellidoPersonaActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel5.setText("Apellido");
 
-        jButton16.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton16.setText("Crear Gerente");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearGerente.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearGerente.setText("Crear Gerente");
+        btnCrearGerente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                btnCrearGerenteActionPerformed(evt);
             }
         });
 
-        jButton17.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton17.setText("Crear Narrador");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearNarrador.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearNarrador.setText("Crear Narrador");
+        btnCrearNarrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                btnCrearNarradorActionPerformed(evt);
             }
         });
 
@@ -308,23 +309,23 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(21, 21, 21)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtApellidoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(TxtIDPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addGap(21, 21, 21)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(TxtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(162, 162, 162)
-                        .addComponent(jButton2)
+                        .addComponent(btnCrearAutor)
                         .addGap(56, 56, 56)
-                        .addComponent(jButton16)
+                        .addComponent(btnCrearGerente)
                         .addGap(54, 54, 54)
-                        .addComponent(jButton17)))
+                        .addComponent(btnCrearNarrador)))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -333,20 +334,20 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 .addGap(153, 153, 153)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtIDPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtNombrePersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellidoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCrearAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearNarrador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(219, Short.MAX_VALUE))
         );
 
@@ -355,19 +356,19 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel6.setText("NIT");
 
-        jTextField6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField6.setToolTipText("");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        TextNitEditorial.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TextNitEditorial.setToolTipText("");
+        TextNitEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                TextNitEditorialActionPerformed(evt);
             }
         });
 
-        jTextField7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField7.setToolTipText("");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        TextNombreEditorial.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TextNombreEditorial.setToolTipText("");
+        TextNombreEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                TextNombreEditorialActionPerformed(evt);
             }
         });
 
@@ -377,27 +378,32 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel8.setText("Dirección");
 
-        jTextField8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField8.setToolTipText("");
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        TextNitDireccion.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        TextNitDireccion.setToolTipText("");
+        TextNitDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                TextNitDireccionActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton3.setText("Crear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearEditorial.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearEditorial.setText("Crear");
+        btnCrearEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCrearEditorialActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel9.setText("Gerente");
 
-        jComboBox1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno..." }));
+        ComboGerenteEditorial.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        ComboGerenteEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno..." }));
+        ComboGerenteEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboGerenteEditorialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -414,13 +420,13 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7)
-                            .addComponent(jTextField8)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TextNitEditorial)
+                            .addComponent(TextNombreEditorial)
+                            .addComponent(TextNitDireccion)
+                            .addComponent(ComboGerenteEditorial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(361, 361, 361)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCrearEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(285, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -435,17 +441,17 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TextNitDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextNitEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TextNombreEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboGerenteEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(46, 46, 46)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCrearEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(175, Short.MAX_VALUE))
         );
 
@@ -909,7 +915,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Comprar Stand", jPanel6);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEditoriales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -928,13 +934,13 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(tblEditoriales);
 
-        jButton12.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton12.setText("Consultar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarEditoriales.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnConsultarEditoriales.setText("Consultar");
+        btnConsultarEditoriales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btnConsultarEditorialesActionPerformed(evt);
             }
         });
 
@@ -949,7 +955,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(361, 361, 361)
-                        .addComponent(jButton12)))
+                        .addComponent(btnConsultarEditoriales)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -958,13 +964,13 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConsultarEditoriales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 
         jTabbedPane1.addTab("Show Editoriales", jPanel7);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -983,13 +989,13 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(tblPersonas);
 
-        jButton13.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton13.setText("Consultar");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarPersonas.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnConsultarPersonas.setText("Consultar");
+        btnConsultarPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                btnConsultarPersonasActionPerformed(evt);
             }
         });
 
@@ -1004,7 +1010,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(361, 361, 361)
-                        .addComponent(jButton13)))
+                        .addComponent(btnConsultarPersonas)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -1013,7 +1019,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConsultarPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 
@@ -1327,29 +1333,29 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStandIdActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void TxtIDPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIDPersonaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_TxtIDPersonaActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void TxtNombrePersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNombrePersonaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_TxtNombrePersonaActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtApellidoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPersonaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtApellidoPersonaActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void TextNitEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNitEditorialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_TextNitEditorialActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void TextNombreEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombreEditorialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_TextNombreEditorialActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void TextNitDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNitDireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_TextNitDireccionActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
@@ -1476,6 +1482,34 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCrearStandActionPerformed
 
+    private void actualizarComboStandsCompra() {
+        var response = standController.obtenerStands();
+        if (!response.isOk()) {
+            return;
+        }
+
+        comboStandCompra.removeAllItems();
+        comboStandCompra.addItem("Seleccione uno...");
+
+        for (Stand s : response.getData()) {
+            comboStandCompra.addItem(String.valueOf(s.getId()));
+        }
+    }
+
+    private void actualizarComboEditorialesCompra() {
+        var response = publisherController.obtenerEditoriales();
+        if (!response.isOk()) {
+            return;
+        }
+
+        comboPublisherCompra.removeAllItems();
+        comboPublisherCompra.addItem("Seleccione uno...");
+
+        for (Publisher p : response.getData()) {
+            comboPublisherCompra.addItem(p.getNit());
+        }
+    }
+
     private void actualizarTablaStands() {
         var response = standController.obtenerStands();
         if (!response.isOk()) {
@@ -1489,7 +1523,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
 
         for (Stand s : stands) {
 
-            // ¿Está comprado? -> si tiene al menos una editorial asociada
+            // si tiene al menos una editorial asociada
             boolean comprado = (s.getPublishers() != null && !s.getPublishers().isEmpty());
 
             // Construir texto con los nombres de las editoriales
@@ -1528,62 +1562,217 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         }
     }
 
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        long id = Long.parseLong(jTextField3.getText());
-        String firstname = jTextField4.getText();
-        String lastname = jTextField5.getText();
-
-        this.authors.add(new Author(id, firstname, lastname));
-
-        jComboBox3.addItem(id + " - " + firstname + " " + lastname);
-        jComboBox10.addItem(id + " - " + firstname + " " + lastname);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-        long id = Long.parseLong(jTextField3.getText());
-        String firstname = jTextField4.getText();
-        String lastname = jTextField5.getText();
-
-        this.managers.add(new Manager(id, firstname, lastname));
-
-        jComboBox1.addItem(id + " - " + firstname + " " + lastname);
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-        long id = Long.parseLong(jTextField3.getText());
-        String firstname = jTextField4.getText();
-        String lastname = jTextField5.getText();
-
-        this.narrators.add(new Narrator(id, firstname, lastname));
-
-        jComboBox6.addItem(id + " - " + firstname + " " + lastname);
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        String nit = jTextField6.getText();
-        String name = jTextField7.getText();
-        String address = jTextField8.getText();
-        String[] managerData = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).split(" - ");
-
-        long managerId = Long.parseLong(managerData[0]);
-
-        Manager manager = null;
-        for (Manager manag : this.managers) {
-            if (manag.getId() == managerId) {
-                manager = manag;
-            }
+    private void actualizarComboAutores() {
+        var response = personController.obtenerAutores();
+        if (!response.isOk()) {
+            return;
         }
 
-        this.publishers.add(new Publisher(nit, name, address, manager));
+        var autores = response.getData();
 
-        jComboBox5.addItem(name + " (" + nit + ")");
-        comboPublisherCompra.addItem(name + " (" + nit + ")");
-    }//GEN-LAST:event_jButton3ActionPerformed
+        jComboBox3.removeAllItems();
+        jComboBox10.removeAllItems();
+
+        for (var a : autores) {
+            String item = a.getId() + " - " + a.getFirstname() + " " + a.getLastname();
+            jComboBox3.addItem(item);
+            jComboBox10.addItem(item);
+        }
+    }
+
+    private void actualizarComboGerentes() {
+        var response = personController.obtenerGerentes();
+        if (!response.isOk()) {
+            return;
+        }
+
+        var gerentes = response.getData();
+
+        ComboGerenteEditorial.removeAllItems();
+
+        for (var g : gerentes) {
+            String item = g.getId() + " - " + g.getFirstname() + " " + g.getLastname();
+            ComboGerenteEditorial.addItem(item);
+        }
+    }
+
+    private void actualizarComboNarradores() {
+        var response = personController.obtenerNarradores();
+        if (!response.isOk()) {
+            return;
+        }
+
+        var narradores = response.getData();
+
+        jComboBox6.removeAllItems();
+
+        for (var n : narradores) {
+            String item = n.getId() + " - " + n.getFirstname() + " " + n.getLastname();
+            jComboBox6.addItem(item);
+        }
+    }
+
+    private void actualizarComboEditoriales() {
+        var response = publisherController.obtenerEditoriales();
+        if (!response.isOk()) {
+            return;
+        }
+
+        var editoriales = response.getData();
+
+        jComboBox5.removeAllItems();
+
+        for (Publisher p : editoriales) {
+            jComboBox5.addItem(p.getName() + " (" + p.getNit() + ")");
+        }
+    }
+
+
+    private void btnCrearAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAutorActionPerformed
+        // TODO add your handling code here:
+        try {
+            long id = Long.parseLong(TxtIDPersona.getText().trim());
+            String firstname = TxtNombrePersona.getText().trim();
+            String lastname = txtApellidoPersona.getText().trim();
+
+            var response = personController.crearAutor(id, firstname, lastname);
+
+            if (response.isOk()) {
+                JOptionPane.showMessageDialog(this, response.getMessage());
+
+                // limpiar
+                TxtIDPersona.setText("");
+                TxtNombrePersona.setText("");
+                txtApellidoPersona.setText("");
+
+                // actualizar combos
+                actualizarComboAutores();
+
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        response.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "El ID debe ser numerico.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCrearAutorActionPerformed
+
+    private void btnCrearGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearGerenteActionPerformed
+        // TODO add your handling code here:
+        try {
+            long id = Long.parseLong(TxtIDPersona.getText().trim());
+            String firstname = TxtNombrePersona.getText().trim();
+            String lastname = txtApellidoPersona.getText().trim();
+
+            var response = personController.crearGerente(id, firstname, lastname);
+
+            if (response.isOk()) {
+                JOptionPane.showMessageDialog(this, response.getMessage());
+
+                TxtIDPersona.setText("");
+                TxtNombrePersona.setText("");
+                txtApellidoPersona.setText("");
+
+                actualizarComboGerentes();
+
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        response.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "El ID debe ser numérico.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCrearGerenteActionPerformed
+
+    private void btnCrearNarradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearNarradorActionPerformed
+        // TODO add your handling code here:
+        try {
+            long id = Long.parseLong(TxtIDPersona.getText().trim());
+            String firstname = TxtNombrePersona.getText().trim();
+            String lastname = txtApellidoPersona.getText().trim();
+
+            var response = personController.crearNarrador(id, firstname, lastname);
+
+            if (response.isOk()) {
+                JOptionPane.showMessageDialog(this, response.getMessage());
+
+                TxtIDPersona.setText("");
+                TxtNombrePersona.setText("");
+                txtApellidoPersona.setText("");
+
+                actualizarComboNarradores();
+
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        response.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "El ID debe ser numérico.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCrearNarradorActionPerformed
+
+    private void btnCrearEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEditorialActionPerformed
+        // TODO add your handling code here:
+        try {
+            String nit = TextNitEditorial.getText().trim();
+            String name = TextNombreEditorial.getText().trim();
+            String address = TextNitDireccion.getText().trim();
+
+            // Obtener ID del gerente seleccionado
+            String item = ComboGerenteEditorial.getItemAt(ComboGerenteEditorial.getSelectedIndex());
+            String[] managerData = item.split(" - ");
+            long managerId = Long.parseLong(managerData[0]);
+
+            var response = publisherController.crearEditorial(nit, name, address, managerId);
+
+            if (response.isOk()) {
+                JOptionPane.showMessageDialog(this, response.getMessage());
+
+                // limpiar campos
+                TextNitEditorial.setText("");
+                TextNombreEditorial.setText("");
+                TextNitDireccion.setText("");
+
+                // actualizar combos
+                actualizarComboEditoriales();
+                actualizarComboEditorialesCompra();
+
+            } else {
+                JOptionPane.showMessageDialog(
+                        this,
+                        response.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al procesar el gerente seleccionado.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_btnCrearEditorialActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
@@ -1772,73 +1961,104 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnComprarStandActionPerformed
 
-    private void actualizarComboStandsCompra() {
-        var response = standController.obtenerStands();
-        if (!response.isOk()) {
-            return;
-        }
 
-        comboStandCompra.removeAllItems();
-        comboStandCompra.addItem("Seleccione uno...");
-
-        for (Stand s : response.getData()) {
-            comboStandCompra.addItem(String.valueOf(s.getId()));
-        }
-    }
-
-    private void actualizarComboEditorialesCompra() {
+    private void btnConsultarEditorialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarEditorialesActionPerformed
+        // TODO add your handling code here:
         var response = publisherController.obtenerEditoriales();
+
         if (!response.isOk()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    response.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
             return;
         }
 
-        comboPublisherCompra.removeAllItems();
-        comboPublisherCompra.addItem("Seleccione uno...");
+        java.util.List<Publisher> publishers = response.getData();
 
-        for (Publisher p : response.getData()) {
-            comboPublisherCompra.addItem(p.getNit());
+        DefaultTableModel model = (DefaultTableModel) tblEditoriales.getModel();
+        model.setRowCount(0); // limpiar tabla
+
+        for (Publisher publisher : publishers) {
+
+            String gerenteNombre = "-";
+            if (publisher.getManager() != null) {
+                gerenteNombre = publisher.getManager().getFullname();
+            }
+
+            model.addRow(new Object[]{
+                publisher.getNit(),
+                publisher.getName(),
+                publisher.getAddress(),
+                gerenteNombre,
+                publisher.getStandQuantity()
+            });
         }
-    }
+    }//GEN-LAST:event_btnConsultarEditorialesActionPerformed
 
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void btnConsultarPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarPersonasActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        for (Publisher publisher : this.publishers) {
-            model.addRow(new Object[]{publisher.getNit(), publisher.getName(), publisher.getAddress(), publisher.getManager().getFullname(), publisher.getStandQuantity()});
-        }
-    }//GEN-LAST:event_jButton12ActionPerformed
+        var response = personController.obtenerPersonas();
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.setRowCount(0);
-        for (Author author : this.authors) {
-            model.addRow(new Object[]{author.getId(), author.getFullname(), "Autor", "-", author.getBookQuantity()});
+        if (!response.isOk()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    response.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
         }
-        for (Manager manager : this.managers) {
-            model.addRow(new Object[]{manager.getId(), manager.getFullname(), "Gerente", manager.getPublisher().getName(), 0});
+
+        java.util.List<Person> personas = response.getData();
+
+        DefaultTableModel model = (DefaultTableModel) tblPersonas.getModel();
+        model.setRowCount(0);  // limpiar tabla
+
+        for (Person p : personas) {
+
+            String tipo = "";
+            String editorial = "-";
+            int cantidadLibros = 0;
+            String nombreCompleto = p.getFirstname() + " " + p.getLastname();
+
+            if (p instanceof Author) {
+                tipo = "Autor";
+                Author a = (Author) p;
+                cantidadLibros = a.getBookQuantity();
+
+            } else if (p instanceof Manager) {
+                tipo = "Gerente";
+                Manager m = (Manager) p;
+                if (m.getPublisher() != null) {
+                    editorial = m.getPublisher().getName();
+                } else {
+                    editorial = "-";
+                }
+                cantidadLibros = 0;
+
+            } else if (p instanceof Narrator) {
+                tipo = "Narrador";
+                Narrator n = (Narrator) p;
+                cantidadLibros = n.getBookQuantity();
+            }
+
+            model.addRow(new Object[]{
+                p.getId(),
+                nombreCompleto,
+                tipo,
+                editorial,
+                cantidadLibros
+            });
         }
-        for (Narrator narrator : this.narrators) {
-            model.addRow(new Object[]{narrator.getId(), narrator.getFullname(), "Narrador", "-", narrator.getBookQuantity()});
-        }
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_btnConsultarPersonasActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblStands.getModel();
-        model.setRowCount(0);
-        for (Stand stand : this.stands) {
-            String publishers = "";
-            if (stand.getPublisherQuantity() > 0) {
-                publishers += stand.getPublishers().get(0).getName();
-                for (int i = 1; i < stand.getPublisherQuantity(); i++) {
-                    publishers += (", " + stand.getPublishers().get(i).getName());
-                }
-            }
-            model.addRow(new Object[]{stand.getId(), stand.getPrice(), stand.getPublisherQuantity() > 0 ? "Si" : "No", publishers});
-        }
+
+        actualizarTablaStands();
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -1988,36 +2208,43 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboPublisherCompraActionPerformed
 
+    private void ComboGerenteEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboGerenteEditorialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboGerenteEditorialActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboGerenteEditorial;
+    private javax.swing.JTextField TextNitDireccion;
+    private javax.swing.JTextField TextNitEditorial;
+    private javax.swing.JTextField TextNombreEditorial;
+    private javax.swing.JTextField TxtIDPersona;
+    private javax.swing.JTextField TxtNombrePersona;
     private javax.swing.JButton btnAgregarEditorialCompra;
     private javax.swing.JButton btnAgregarStandCompra;
     private javax.swing.JButton btnComprarStand;
+    private javax.swing.JButton btnConsultarEditoriales;
+    private javax.swing.JButton btnConsultarPersonas;
+    private javax.swing.JButton btnCrearAutor;
+    private javax.swing.JButton btnCrearEditorial;
+    private javax.swing.JButton btnCrearGerente;
+    private javax.swing.JButton btnCrearNarrador;
     private javax.swing.JButton btnCrearStand;
     private javax.swing.JButton btnEliminarEditorialCompra;
     private javax.swing.JButton btnEliminarStandCompra;
     private javax.swing.JComboBox<String> comboPublisherCompra;
     private javax.swing.JComboBox<String> comboStandCompra;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -2079,8 +2306,6 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
@@ -2091,14 +2316,11 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tblEditoriales;
+    private javax.swing.JTable tblPersonas;
     private javax.swing.JTable tblStands;
+    private javax.swing.JTextField txtApellidoPersona;
     private javax.swing.JTextArea txtAreaEditorialesSeleccionadas;
     private javax.swing.JTextArea txtAreaStandsSeleccionados;
     private javax.swing.JTextField txtStandId;
