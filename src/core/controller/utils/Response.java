@@ -44,7 +44,7 @@ public class Response<T> {
         return new Response<>(false, Status.CONFLICT, message, null);
     }
 
-    public static <T> Response<T> error(String message) {
+    public static <T> Response<T> error(Status CONFLICT, String message) {
         return new Response<>(false, Status.ERROR, message, null);
     }
 

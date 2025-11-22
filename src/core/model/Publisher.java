@@ -59,5 +59,10 @@ public class Publisher {
     public void addStand(Stand stand) {
         this.stands.add(stand);
     }
+
+    public ArrayList<Stand> getStands() {
+        return stands;
+    }
+        
     
 }

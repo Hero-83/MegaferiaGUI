@@ -5,12 +5,7 @@
 package core.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-
-
 
 /**
  *
@@ -34,25 +29,48 @@ public class MegaferiaDataStore {
     }
 
     // ======== STANDS ========
-
-    public boolean existsStandById(long id) {
-        return stands.stream().anyMatch(s -> s.getId() == id);
-    }
-
     public void addStand(Stand stand) {
         stands.add(stand);
     }
 
+    public boolean existsStandById(long id) {
+        for (Stand s : stands) {
+            if (s.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    List<Stand> getRawStands() {  // solo para controladores
+       return stands;
+    }
     public List<Stand> getStandsOrderedById() {
-        List<Stand> copy = new ArrayList<>(stands);
-        Collections.sort(copy, Comparator.comparingLong(Stand::getId));
-        return copy;
+
+        List<Stand> ordered = new ArrayList<>(stands);
+
+        for (int i = 0; i < ordered.size(); i++) {
+            for (int j = i + 1; j < ordered.size(); j++) {
+                if (ordered.get(i).getId() > ordered.get(j).getId()) {
+                    Stand aux = ordered.get(i);
+                    ordered.set(i, ordered.get(j));
+                    ordered.set(j, aux);
+                }
+            }
+        }
+        return ordered;
     }
 
-    // ======== PERSONAS ========
+  
 
+    // ======== PERSONAS ========
     public boolean existsPersonById(long id) {
-        return people.stream().anyMatch(p -> p.getId() == id);
+        for (Person p : people) {
+            if (p.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addPerson(Person p) {
@@ -61,21 +79,36 @@ public class MegaferiaDataStore {
 
     public Person findPersonById(long id) {
         for (Person p : people) {
-            if (p.getId() == id) return p;
+            if (p.getId() == id) {
+                return p;
+            }
         }
         return null;
     }
 
     public List<Person> getPeopleOrderedById() {
-        List<Person> copy = new ArrayList<>(people);
-        Collections.sort(copy, Comparator.comparingLong(Person::getId));
-        return copy;
+        List<Person> ordered = new ArrayList<>(people);
+
+        for (int i = 0; i < ordered.size(); i++) {
+            for (int j = i + 1; j < ordered.size(); j++) {
+                if (ordered.get(i).getId() > ordered.get(j).getId()) {
+                    Person aux = ordered.get(i);
+                    ordered.set(i, ordered.get(j));
+                    ordered.set(j, aux);
+                }
+            }
+        }
+        return ordered;
     }
 
     // ======== EDITORIALES ========
-
     public boolean existsPublisherByNit(String nit) {
-        return publishers.stream().anyMatch(e -> e.getNit().equals(nit));
+        for (Publisher e : publishers) {
+            if (e.getNit().equals(nit)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addPublisher(Publisher e) {
@@ -84,57 +117,106 @@ public class MegaferiaDataStore {
 
     public Publisher findPublisherByNit(String nit) {
         for (Publisher e : publishers) {
-            if (e.getNit().equals(nit)) return e;
+            if (e.getNit().equals(nit)) {
+                return e;
+            }
         }
         return null;
     }
 
     public List<Publisher> getPublishersOrderedByNit() {
-        List<Publisher> copy = new ArrayList<>(publishers);
-        Collections.sort(copy, Comparator.comparing(Publisher::getNit));
-        return copy;
+        List<Publisher> ordered = new ArrayList<>(publishers);
+
+        for (int i = 0; i < ordered.size(); i++) {
+            for (int j = i + 1; j < ordered.size(); j++) {
+                // Comparación lexicográfica sin Comparator
+                if (ordered.get(i).getNit().compareTo(ordered.get(j).getNit()) > 0) {
+                    Publisher aux = ordered.get(i);
+                    ordered.set(i, ordered.get(j));
+                    ordered.set(j, aux);
+                }
+            }
+        }
+        return ordered;
     }
 
     // ======== LIBROS ========
-
     public boolean existsBookByIsbn(String isbn) {
-        return books.stream().anyMatch(b -> b.getIsbn().equals(isbn));
+        for (Book b : books) {
+            if (b.getIsbn().equals(isbn)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addBook(Book b) {
         books.add(b);
     }
 
-    public List<Book> getBooksOrderedByIsbn() {
-        List<Book> copy = new ArrayList<>(books);
-        Collections.sort(copy, Comparator.comparing(Book::getIsbn));
-        return copy;
+    public List<Book> getAllBooks() {
+        return getBooksOrderedByIsbn();
     }
 
-    public List<Book> getBooksByAuthor(Author author) {
+    public List<Book> getBooksOrderedByIsbn() {
+        List<Book> ordered = new ArrayList<>(books);
+
+        for (int i = 0; i < ordered.size(); i++) {
+            for (int j = i + 1; j < ordered.size(); j++) {
+                if (ordered.get(i).getIsbn().compareTo(ordered.get(j).getIsbn()) > 0) {
+                    Book aux = ordered.get(i);
+                    ordered.set(i, ordered.get(j));
+                    ordered.set(j, aux);
+                }
+            }
+        }
+        return ordered;
+    }
+
+    public List<Book> getBooksByAuthor(Author a) {
         List<Book> result = new ArrayList<>();
+
         for (Book b : books) {
-            if (b.getAuthors().contains(author)) {
+            if (b.getAuthors().contains(a)) {
                 result.add(b);
             }
         }
-        Collections.sort(result, Comparator.comparing(Book::getIsbn));
+
+        // ordenar
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = i + 1; j < result.size(); j++) {
+                if (result.get(i).getIsbn().compareTo(result.get(j).getIsbn()) > 0) {
+                    Book aux = result.get(i);
+                    result.set(i, result.get(j));
+                    result.set(j, aux);
+                }
+            }
+        }
+
         return result;
     }
 
     public List<Book> getBooksByFormat(Class<? extends Book> bookType) {
         List<Book> result = new ArrayList<>();
+
+        // Filtrar por tipo de libro (Impreso, Digital, Audiolibro, etc.)
         for (Book b : books) {
             if (bookType.isInstance(b)) {
                 result.add(b);
             }
         }
-        Collections.sort(result, Comparator.comparing(Book::getIsbn));
+
+        // Ordenar por ISBN
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = i + 1; j < result.size(); j++) {
+                if (result.get(i).getIsbn().compareTo(result.get(j).getIsbn()) > 0) {
+                    Book aux = result.get(i);
+                    result.set(i, result.get(j));
+                    result.set(j, aux);
+                }
+            }
+        }
+
         return result;
     }
-
-    public List<Book> getAllBooks() {
-        return new ArrayList<>(books);
-    }
 }
-

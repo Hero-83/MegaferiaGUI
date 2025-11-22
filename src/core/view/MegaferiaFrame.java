@@ -14,6 +14,11 @@ import core.model.Manager;
 import core.model.Narrator;
 import core.model.PrintedBook;
 import core.model.Stand;
+import core.controller.StandController;
+import core.controller.PersonController;
+import core.controller.PublisherController;
+import core.controller.BookController;
+import core.controller.PurchaseController;
 import java.util.ArrayList;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +36,14 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private ArrayList<Narrator> narrators;
     private ArrayList<Publisher> publishers;
     private ArrayList<Book> books;
-    
+
+    // Controladores (MVC)
+    private StandController standController;
+    private PersonController personController;
+    private PublisherController publisherController;
+    private BookController bookController;
+    private PurchaseController purchaseController;
+
     /**
      * Creates new form MegaferiaFrame
      */
@@ -46,6 +58,24 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         this.books = new ArrayList<>();
     }
 
+    // Constructor MVC: recibe los controladores
+    public MegaferiaFrame(
+            StandController standController,
+            PersonController personController,
+            PublisherController publisherController,
+            BookController bookController,
+            PurchaseController purchaseController) {
+
+        // Llama al constructor por defecto para inicializar la GUI
+        this();
+
+        // Asigna los controladores
+        this.standController = standController;
+        this.personController = personController;
+        this.publisherController = publisherController;
+        this.bookController = bookController;
+        this.purchaseController = purchaseController;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1394,12 +1424,12 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void btnCrearStandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearStandActionPerformed
-    // TODO add your handling code here:
+        // TODO add your handling code here:
         long id = Long.parseLong(txtStandId.getText());
         double price = Double.parseDouble(txtStandPrecio.getText());
-        
+
         this.stands.add(new Stand(id, price));
-        
+
         jComboBox7.addItem("" + id);
     }//GEN-LAST:event_btnCrearStandActionPerformed
 
@@ -1408,9 +1438,9 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         long id = Long.parseLong(jTextField3.getText());
         String firstname = jTextField4.getText();
         String lastname = jTextField5.getText();
-        
+
         this.authors.add(new Author(id, firstname, lastname));
-        
+
         jComboBox3.addItem(id + " - " + firstname + " " + lastname);
         jComboBox10.addItem(id + " - " + firstname + " " + lastname);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -1420,9 +1450,9 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         long id = Long.parseLong(jTextField3.getText());
         String firstname = jTextField4.getText();
         String lastname = jTextField5.getText();
-        
+
         this.managers.add(new Manager(id, firstname, lastname));
-        
+
         jComboBox1.addItem(id + " - " + firstname + " " + lastname);
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -1431,9 +1461,9 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         long id = Long.parseLong(jTextField3.getText());
         String firstname = jTextField4.getText();
         String lastname = jTextField5.getText();
-        
+
         this.narrators.add(new Narrator(id, firstname, lastname));
-        
+
         jComboBox6.addItem(id + " - " + firstname + " " + lastname);
     }//GEN-LAST:event_jButton17ActionPerformed
 
@@ -1443,18 +1473,18 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         String name = jTextField7.getText();
         String address = jTextField8.getText();
         String[] managerData = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).split(" - ");
-        
+
         long managerId = Long.parseLong(managerData[0]);
-        
+
         Manager manager = null;
         for (Manager manag : this.managers) {
             if (manag.getId() == managerId) {
                 manager = manag;
             }
         }
-        
+
         this.publishers.add(new Publisher(nit, name, address, manager));
-        
+
         jComboBox5.addItem(name + " (" + nit + ")");
         jComboBox8.addItem(name + " (" + nit + ")");
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1480,7 +1510,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         String format = jComboBox4.getItemAt(jComboBox4.getSelectedIndex());
         double value = Double.parseDouble(jTextField12.getText());
         String publisherData = jComboBox5.getItemAt(jComboBox5.getSelectedIndex());
-        
+
         ArrayList<Author> authors = new ArrayList<>();
         for (String authorData : authorsData) {
             long authorId = Long.parseLong(authorData.split(" - ")[0]);
@@ -1490,20 +1520,20 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         String publisherNit = publisherData.split(" ")[1].replace("(", "").replace(")", "");
-        
+
         Publisher publisher = null;
         for (Publisher publish : this.publishers) {
             if (publish.getNit().equals(publisherNit)) {
                 publisher = publish;
             }
         }
-        
+
         if (jRadioButton1.isSelected()) {
             int pages = Integer.parseInt(jTextField13.getText());
             int copies = Integer.parseInt(jTextField14.getText());
-            
+
             this.books.add(new PrintedBook(title, authors, isbn, genre, format, value, publisher, pages, copies));
         }
         if (jRadioButton2.isSelected()) {
@@ -1517,16 +1547,16 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         if (jRadioButton3.isSelected()) {
             int duration = Integer.parseInt(jTextField16.getText());
             String[] narratorData = jComboBox6.getItemAt(jComboBox6.getSelectedIndex()).split(" - ");
-            
+
             long narratorId = Long.parseLong(narratorData[0]);
-            
+
             Narrator narrator = null;
             for (Narrator narrat : this.narrators) {
                 if (narrat.getId() == narratorId) {
                     narrator = narrat;
                 }
             }
-            
+
             this.books.add(new Audiobook(title, authors, isbn, genre, format, value, publisher, duration, narrator));
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1559,7 +1589,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String[] standIds = jTextArea3.getText().split("\n");
         String[] publishersData = jTextArea1.getText().split("\n");
-        
+
         ArrayList<Stand> stands = new ArrayList<>();
         for (String standId : standIds) {
             for (Stand stand : this.stands) {
@@ -1568,7 +1598,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         ArrayList<Publisher> publishers = new ArrayList<>();
         for (String publisherData : publishersData) {
             String publisherNit = publisherData.split(" ")[1].replace("(", "").replace(")", "");
@@ -1578,7 +1608,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         for (Stand stand : stands) {
             for (Publisher publisher : publishers) {
                 stand.addPublisher(publisher);
@@ -1630,10 +1660,10 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         String search = jComboBox9.getItemAt(jComboBox9.getSelectedIndex());
-        
+
         DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
         model.setRowCount(0);
-        
+
         if (search.equals("Libros Impresos")) {
             for (Book book : this.books) {
                 if (book instanceof PrintedBook printedBook) {
@@ -1668,7 +1698,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
             }
         }
         if (search.equals("Todos los Libros")) {
-            for (Book book : this.books) { 
+            for (Book book : this.books) {
                 String authors = book.getAuthors().get(0).getFullname();
                 for (int i = 1; i < book.getAuthors().size(); i++) {
                     authors += (", " + book.getAuthors().get(i).getFullname());
@@ -1690,18 +1720,18 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String[] authorData = jComboBox10.getItemAt(jComboBox10.getSelectedIndex()).split(" - ");
         long authorId = Long.parseLong(authorData[0]);
-        
+
         Author author = null;
         for (Author auth : this.authors) {
             if (auth.getId() == authorId) {
                 author = auth;
             }
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
         model.setRowCount(0);
-        
-        for (Book book : author.getBooks()) { 
+
+        for (Book book : author.getBooks()) {
             String authors = book.getAuthors().get(0).getFullname();
             for (int i = 1; i < book.getAuthors().size(); i++) {
                 authors += (", " + book.getAuthors().get(i).getFullname());
@@ -1721,11 +1751,11 @@ public class MegaferiaFrame extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         String format = jComboBox11.getItemAt(jComboBox11.getSelectedIndex());
-        
+
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
         model.setRowCount(0);
-        
-        for (Book book : this.books) { 
+
+        for (Book book : this.books) {
             if (book.getFormat().equals(format)) {
                 String authors = book.getAuthors().get(0).getFullname();
                 for (int i = 1; i < book.getAuthors().size(); i++) {
@@ -1757,10 +1787,10 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 authorsMax.add(author);
             }
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) jTable6.getModel();
         model.setRowCount(0);
-        
+
         for (Author author : authorsMax) {
             model.addRow(new Object[]{author.getId(), author.getFullname(), maxPublishers});
         }
@@ -1771,7 +1801,7 @@ public class MegaferiaFrame extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         System.setProperty("flatlaf.useNativeLibrary", "false");
-        
+
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception ex) {

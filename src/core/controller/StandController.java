@@ -8,18 +8,15 @@ package core.controller;
  *
  * @author keinerthd
  */
-
 import core.controller.utils.Response;
-import core.controller.utils.Status;
 import core.model.MegaferiaDataStore;
 import core.model.Stand;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class StandController {
 
-    private final MegaferiaDataStore store;
+    private MegaferiaDataStore store;
 
     public StandController() {
         this.store = MegaferiaDataStore.getInstance();
@@ -38,18 +35,15 @@ public class StandController {
             return Response.badRequest("El precio del stand debe ser mayor que 0.");
         }
 
-
         // id no repetido
         if (store.existsStandById(id)) {
-            return Response.conflict("Ya existe un stand con ese ID.");
+            return Response.badRequest("Ya existe un stand con ese ID.");
         }
 
         Stand stand = new Stand(id, price);
-
-        // Guardar en el "almacén"
         store.addStand(stand);
 
-        // devolver una COPIA (patrón Prototype)
+        // devolver una COPIA (patrpn Prototype)
         Stand copy = new Stand(stand.getId(), stand.getPrice());
 
         return Response.ok("Stand creado correctamente", copy);

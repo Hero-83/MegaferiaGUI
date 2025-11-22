@@ -4,10 +4,33 @@
  */
 package main;
 
+import core.controller.*;
+import core.view.MegaferiaFrame;
+
 /**
  *
  * @author keinerthd
  */
+
 public class Main {
-    
+    public static void main(String[] args) {
+
+        StandController standCtrl = new StandController();
+        PersonController personCtrl = new PersonController();
+        PublisherController publisherCtrl = new PublisherController();
+        BookController bookCtrl = new BookController();
+        PurchaseController purchaseCtrl = new PurchaseController();
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MegaferiaFrame(
+                    standCtrl,
+                    personCtrl,
+                    publisherCtrl,
+                    bookCtrl,
+                    purchaseCtrl
+                ).setVisible(true);
+            }
+        });
+    }
 }
