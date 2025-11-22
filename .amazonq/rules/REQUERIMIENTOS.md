@@ -3,43 +3,51 @@
 ## 📋 Checklist de Funcionalidades Principales
 
 ### ✅ Gestión de Stands
-- [x] Crear stands con ID único (interfaz básica implementada)
-- [x] Validar ID de stands (≥0, máximo 15 dígitos) - unicidad implementada
-- [ ] Validar precio de stands (>0)
+- [x] Crear stands con ID único (interfaz básica implementada + RegistrationManager)
+- [x] Validar ID de stands (≥0, máximo 15 dígitos) - unicidad implementada - unicidad implementada
+- [x] Validar precio de stands (>0) - formato implementado
 - [ ] Visualizar stands en tabla ordenada por ID
+  - [x] Ordenar stands por ID (Controlador) - SortManager implementado
+  - [ ] Visualizar stands en tabla (Vista)
 
 ### ✅ Gestión de Personas
-- [x] Registrar autores (clases e interfaz implementadas)
-- [x] Registrar gerentes (clases e interfaz implementadas)
-- [x] Registrar narradores (clases e interfaz implementadas)
-- [x] Validar ID de personas (único, ≥0, máximo 15 dígitos) - unicidad implementada
-- [ ] Validar que campos no estén vacíos
+- [x] Registrar autores (clases e interfaz implementadas + RegistrationManager)
+- [x] Registrar gerentes (clases e interfaz implementadas + RegistrationManager)
+- [x] Registrar narradores (clases e interfaz implementadas + RegistrationManager)
+- [x] Validar ID de personas (único, ≥0, máximo 15 dígitos) - unicidad implementada - unicidad implementada
+- [x] Validar que campos no estén vacíos - FormatValidator implementado
 - [ ] Visualizar personas en tabla ordenada por ID
+  - [x] Ordenar personas por ID (Controlador) - SortManager implementado
+  - [ ] Visualizar personas en tabla (Vista)
 
 ### ✅ Gestión de Editoriales
-- [x] Registrar editoriales (clases e interfaz implementadas)
-- [x] Validar NIT único con formato XXX.XXX.XXX-X - unicidad implementada
-- [ ] Validar gerente existente previamente
-- [ ] Validar campos no vacíos
+- [x] Registrar editoriales (clases e interfaz implementadas + RegistrationManager)
+- [x] Validar NIT único con formato XXX.XXX.XXX-X - unicidad y formato implementados
+- [x] Validar gerente existente previamente - ExistenceValidator implementado
+- [x] Validar campos no vacíos - FormatValidator implementado
 - [ ] Visualizar editoriales en tabla ordenada por NIT
+  - [x] Ordenar editoriales por NIT (Controlador) - SortManager implementado
+  - [ ] Visualizar editoriales en tabla (Vista)
 
 ### ✅ Gestión de Libros
 - [x] Registrar libros impresos (clases e interfaz implementadas)
 - [x] Registrar libros digitales (clases e interfaz implementadas)
 - [x] Registrar audiolibros (clases e interfaz implementadas)
-- [x] Validar ISBN único con formato XXX-X-XX-XXXXXX-X - unicidad implementada
-- [ ] Validar autores existentes previamente
-- [ ] Validar editorial existente previamente
-- [ ] Validar narrador existente (para audiolibros)
-- [ ] Validar valor del libro (>0)
+- [x] Validar ISBN único con formato XXX-X-XX-XXXXXX-X - unicidad y formato implementados
+- [x] Validar autores existentes previamente - ExistenceValidator implementado
+- [x] Validar editorial existente previamente - ExistenceValidator implementado
+- [x] Validar narrador existente (para audiolibros) - ExistenceValidator implementado
+- [x] Validar valor del libro (>0) - formato implementado
 - [ ] Evitar autores duplicados en un mismo libro
-- [ ] Validar campos no vacíos (excepto hipervínculo)
+- [x] Validar campos no vacíos (excepto hipervínculo) - FormatValidator implementado
 - [ ] Visualizar libros por tipo ordenados por ISBN
+  - [x] Ordenar libros por ISBN (Controlador) - SortManager implementado
+  - [ ] Visualizar libros en tabla (Vista)
 
 ### ✅ Gestión de Compras
 - [ ] Realizar compra de stands por editoriales
-- [ ] Validar stands existentes previamente
-- [ ] Validar editoriales existentes previamente
+- [x] Validar stands existentes previamente - ExistenceValidator implementado
+- [x] Validar editoriales existentes previamente - ExistenceValidator implementado
 - [ ] Evitar duplicados de stands y editoriales en compra
 
 ### ✅ Consultas y Búsquedas
@@ -47,6 +55,8 @@
 - [ ] Búsqueda de libros por formato
 - [ ] Búsqueda de autores con más libros en diferentes editoriales
 - [ ] Resultados ordenados por ISBN (libros) o ID (autores)
+  - [x] Ordenar resultados de búsqueda (Controlador) - SortManager implementado
+  - [ ] Mostrar resultados ordenados (Vista)
 
 ## 🏗️ Requerimientos de Arquitectura MVC
 
@@ -87,7 +97,7 @@
 ## 🎯 Principios SOLID
 
 ### Single Responsibility Principle (SRP)
-- [x] Cada clase tiene una única responsabilidad (UniqueValidator implementado)
+- [x] Cada clase tiene una única responsabilidad (UniqueValidator, FormatValidator, SortManager, ExistenceValidator, RegistrationManager implementados)
 - [ ] Separación clara de responsabilidades
 
 ### Open/Closed Principle (OCP)
@@ -119,16 +129,16 @@
 ## 📝 Validaciones Específicas
 
 ### Formatos Requeridos
-- [ ] NIT: XXX.XXX.XXX-X (dígitos 0-9)
-- [ ] ISBN: XXX-X-XX-XXXXXX-X (dígitos 0-9)
-- [x] IDs: únicos, ≥0, máximo 15 dígitos (unicidad implementada)
+- [x] NIT: XXX.XXX.XXX-X (dígitos 0-9) - FormatValidator implementado
+- [x] ISBN: XXX-X-XX-XXXXXX-X (dígitos 0-9) - FormatValidator implementado
+- [x] IDs: únicos, ≥0, máximo 15 dígitos (unicidad y formato implementados)
 
 ### Reglas de Negocio
-- [ ] Precios y valores > 0
-- [ ] Campos obligatorios no vacíos
-- [ ] Referencias válidas entre entidades
+- [x] Precios y valores > 0 (FormatValidator implementado)
+- [x] Campos obligatorios no vacíos - FormatValidator implementado
+- [x] Referencias válidas entre entidades - ExistenceValidator implementado
 - [x] Sin duplicados en listas (UniqueValidator implementado)
-- [ ] Ordenamiento por campos específicos
+- [x] Ordenamiento por campos específicos - SortManager implementado
 
 ## 🚀 Entrega y Configuración
 
