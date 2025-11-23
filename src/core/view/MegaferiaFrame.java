@@ -201,15 +201,17 @@ public class MegaferiaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel1.setText("Precio");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+        jLabel1.setBounds(300, 220, 50, 25);
+        jPanel2.add(jLabel1);
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel2.setText("ID");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+        jLabel2.setBounds(300, 180, 25, 25);
+        jPanel2.add(jLabel2);
 
         txtStandPrecio.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         txtStandPrecio.setToolTipText("");
@@ -218,7 +220,8 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 txtStandPrecioActionPerformed(evt);
             }
         });
-        jPanel2.add(txtStandPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 150, 30));
+        txtStandPrecio.setBounds(370, 220, 150, 30);
+        jPanel2.add(txtStandPrecio);
 
         txtStandId.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         txtStandId.setToolTipText("");
@@ -227,7 +230,8 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 txtStandIdActionPerformed(evt);
             }
         });
-        jPanel2.add(txtStandId, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 150, 30));
+        txtStandId.setBounds(370, 180, 150, 30);
+        jPanel2.add(txtStandId);
 
         btnCrearStand.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         btnCrearStand.setText("Crear");
@@ -236,7 +240,8 @@ public class MegaferiaFrame extends javax.swing.JFrame {
                 btnCrearStandActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCrearStand, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 90, 40));
+        btnCrearStand.setBounds(370, 280, 90, 40);
+        jPanel2.add(btnCrearStand);
 
         jTabbedPane1.addTab("Stand", jPanel2);
 

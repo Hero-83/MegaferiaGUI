@@ -149,4 +149,19 @@ public class PersonController {
         ArrayList<Author> sortedAuthors = SortUtils.getSortedAuthorsByBookCount(authors);
         return Response.ok(sortedAuthors);
     }
+    
+    public Response<List<Author>> obtenerAutoresConMasLibrosEnDiferentesEditoriales() {
+        List<Person> people = store.getPeople();
+        ArrayList<Author> authors = new ArrayList<>();
+
+        for (Person p : people) {
+            if (p instanceof Author) {
+                authors.add((Author) p);
+            }
+        }
+        
+        // Ordenar por cantidad de editoriales diferentes (descendente)
+        authors.sort((a1, a2) -> Integer.compare(a2.getPublisherQuantity(), a1.getPublisherQuantity()));
+        return Response.ok(authors);
+    }
 }

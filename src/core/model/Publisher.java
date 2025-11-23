@@ -61,7 +61,7 @@ public class Publisher {
     }
 
     public ArrayList<Stand> getStands() {
-        return stands;
+        return new ArrayList<>(stands);
     }
         
     

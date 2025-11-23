@@ -42,7 +42,7 @@ public abstract class Book {
     }
 
     public ArrayList<Author> getAuthors() {
-        return authors;
+        return new ArrayList<>(authors);
     }
 
     public String getIsbn() {

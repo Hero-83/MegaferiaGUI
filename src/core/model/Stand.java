@@ -35,7 +35,7 @@ public class Stand {
     }
 
     public ArrayList<Publisher> getPublishers() {
-        return publishers;
+        return new ArrayList<>(publishers);
     }
     
     public int getPublisherQuantity() {
