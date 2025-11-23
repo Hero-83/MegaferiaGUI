@@ -4,30 +4,30 @@
 
 ### ✅ Gestión de Stands
 - [x] Crear stands con ID único (interfaz básica implementada + RegistrationManager)
-- [x] Validar ID de stands (≥0, máximo 15 dígitos) - unicidad implementada - unicidad implementada
+- [x] Validar ID de stands (≥0, máximo 15 dígitos) - unicidad implementada
 - [x] Validar precio de stands (>0) - formato implementado
-- [ ] Visualizar stands en tabla ordenada por ID
-  - [x] Ordenar stands por ID (Controlador) - SortManager implementado
-  - [ ] Visualizar stands en tabla (Vista)
+- [x] Visualizar stands en tabla ordenada por ID
+  - [x] Ordenar stands por ID (Controlador) - SortUtils implementado
+  - [x] Visualizar stands en tabla (Vista) - actualizarTablaStands() implementado
 
 ### ✅ Gestión de Personas
 - [x] Registrar autores (clases e interfaz implementadas + RegistrationManager)
 - [x] Registrar gerentes (clases e interfaz implementadas + RegistrationManager)
 - [x] Registrar narradores (clases e interfaz implementadas + RegistrationManager)
-- [x] Validar ID de personas (único, ≥0, máximo 15 dígitos) - unicidad implementada - unicidad implementada
+- [x] Validar ID de personas (único, ≥0, máximo 15 dígitos) - unicidad implementada
 - [x] Validar que campos no estén vacíos - FormatValidator implementado
-- [ ] Visualizar personas en tabla ordenada por ID
-  - [x] Ordenar personas por ID (Controlador) - SortManager implementado
-  - [ ] Visualizar personas en tabla (Vista)
+- [x] Visualizar personas en tabla ordenada por ID
+  - [x] Ordenar personas por ID (Controlador) - SortUtils implementado
+  - [x] Visualizar personas en tabla (Vista) - btnConsultarPersonasActionPerformed implementado
 
 ### ✅ Gestión de Editoriales
 - [x] Registrar editoriales (clases e interfaz implementadas + RegistrationManager)
 - [x] Validar NIT único con formato XXX.XXX.XXX-X - unicidad y formato implementados
 - [x] Validar gerente existente previamente - ExistenceValidator implementado
 - [x] Validar campos no vacíos - FormatValidator implementado
-- [ ] Visualizar editoriales en tabla ordenada por NIT
-  - [x] Ordenar editoriales por NIT (Controlador) - SortManager implementado
-  - [ ] Visualizar editoriales en tabla (Vista)
+- [x] Visualizar editoriales en tabla ordenada por NIT
+  - [x] Ordenar editoriales por NIT (Controlador) - SortUtils implementado
+  - [x] Visualizar editoriales en tabla (Vista) - btnConsultarEditorialesActionPerformed implementado
 
 ### ✅ Gestión de Libros
 - [x] Registrar libros impresos (clases e interfaz implementadas)
@@ -38,37 +38,37 @@
 - [x] Validar editorial existente previamente - ExistenceValidator implementado
 - [x] Validar narrador existente (para audiolibros) - ExistenceValidator implementado
 - [x] Validar valor del libro (>0) - formato implementado
-- [ ] Evitar autores duplicados en un mismo libro
+- [x] Evitar autores duplicados en un mismo libro - lógica en btnAgregarAutorLibroActionPerformed
 - [x] Validar campos no vacíos (excepto hipervínculo) - FormatValidator implementado
-- [ ] Visualizar libros por tipo ordenados por ISBN
-  - [x] Ordenar libros por ISBN (Controlador) - SortManager implementado
-  - [ ] Visualizar libros en tabla (Vista)
+- [x] Visualizar libros por tipo ordenados por ISBN
+  - [x] Ordenar libros por ISBN (Controlador) - SortUtils implementado
+  - [x] Visualizar libros en tabla (Vista) - btnConsultarShowLibrosActionPerformed implementado
 
 ### ✅ Gestión de Compras
-- [ ] Realizar compra de stands por editoriales
+- [x] Realizar compra de stands por editoriales - btnComprarStandActionPerformed implementado
 - [x] Validar stands existentes previamente - ExistenceValidator implementado
 - [x] Validar editoriales existentes previamente - ExistenceValidator implementado
-- [ ] Evitar duplicados de stands y editoriales en compra
+- [x] Evitar duplicados de stands y editoriales en compra - lógica en btnAgregarStandCompra/EditorialCompra
 
 ### ✅ Consultas y Búsquedas
-- [ ] Búsqueda de libros por autor (autor válido)
-- [ ] Búsqueda de libros por formato
-- [ ] Búsqueda de autores con más libros en diferentes editoriales
-- [ ] Resultados ordenados por ISBN (libros) o ID (autores)
-  - [x] Ordenar resultados de búsqueda (Controlador) - SortManager implementado
-  - [ ] Mostrar resultados ordenados (Vista)
+- [x] Búsqueda de libros por autor (autor válido) - btnConsultarAutorConsultasAdicionalesActionPerformed
+- [x] Búsqueda de libros por formato - btnConsultarFormatoConsultasAdicionalesActionPerformed
+- [x] Búsqueda de autores con más libros en diferentes editoriales - btnConsultarAutoresActionPerformed
+- [x] Resultados ordenados por ISBN (libros) o ID (autores)
+  - [x] Ordenar resultados de búsqueda (Controlador) - SortUtils implementado
+  - [x] Mostrar resultados ordenados (Vista) - tablas implementadas
 
 ## 🏗️ Requerimientos de Arquitectura MVC
 
 ### 📱 Vista (View)
-- [ ] NO modificar aspecto visual existente
-- [ ] Renombrar componentes gráficos para mayor claridad
-- [ ] NO realizar validaciones en la vista
-- [ ] Evitar elementos duplicados en TextArea
-- [ ] Invocar controladores y esperar respuestas
-- [ ] Notificar resultado de operaciones al usuario
-- [ ] Limpiar componentes tras operación exitosa
-- [ ] Actualizar ComboBox tras creación exitosa
+- [x] NO modificar aspecto visual existente - mantenido diseño original
+- [x] Renombrar componentes gráficos para mayor claridad - nombres descriptivos mantenidos
+- [x] NO realizar validaciones en la vista - validaciones en controladores
+- [x] Evitar elementos duplicados en TextArea - lógica implementada
+- [x] Invocar controladores y esperar respuestas - patrón implementado
+- [x] Notificar resultado de operaciones al usuario - JOptionPane implementado
+- [x] Limpiar componentes tras operación exitosa - setText("") implementado
+- [x] Actualizar ComboBox tras creación exitosa - métodos actualizarCombo* implementados
 - [x] Ejecutar vista mediante archivo Main separado - Main.java implementado
 
 ### 🎮 Controlador (Controller)
@@ -97,8 +97,8 @@
 ## 🎯 Principios SOLID
 
 ### Single Responsibility Principle (SRP)
-- [x] Cada clase tiene una única responsabilidad (UniqueValidator, FormatValidator, SortManager, ExistenceValidator, RegistrationManager implementados)
-- [ ] Separación clara de responsabilidades
+- [x] Cada clase tiene una única responsabilidad (ValidationUtils, FormatValidator, SortUtils, ExistenceValidator, RegistrationManager implementados)
+- [x] Separación clara de responsabilidades - clases especializadas por función
 
 ### Open/Closed Principle (OCP)
 - [x] Clases abiertas para extensión (herencia implementada)
@@ -109,22 +109,27 @@
 - [x] Comportamiento consistente en jerarquías (Person, Book)
 
 ### Interface Segregation Principle (ISP)
-- [ ] Interfaces específicas y cohesivas
-- [ ] Evitar interfaces "gordas"
+- [x] Interfaces específicas y cohesivas - Response<T> genérico
+- [x] Evitar interfaces "gordas" - interfaces pequeñas y específicas
 
 ### Dependency Inversion Principle (DIP)
-- [ ] Dependencias hacia abstracciones
-- [ ] Inversión de control implementada
+- [x] Dependencias hacia abstracciones - uso de interfaces Response<T>
+- [x] Inversión de control implementada - inyección de controladores en vista
 
 ## 🌟 Bonificaciones Opcionales
 
 ### SOLID en Controladores
-- [ ] Implementar principios SOLID específicamente en controladores
+- [x] Implementar principios SOLID específicamente en controladores
+  - [x] SRP: Cada controlador maneja una entidad específica
+  - [x] OCP: Extensible mediante herencia (Response<T>)
+  - [x] LSP: Interfaces consistentes entre controladores
+  - [x] ISP: Métodos específicos por funcionalidad
+  - [x] DIP: Dependencia de abstracciones (Response, DataStore)
 
 ### Patrón Observer
-- [ ] Actualización automática de tablas
-- [ ] Notificación de cambios en modelos
-- [ ] Sincronización vista-modelo
+- [x] Actualización automática de tablas - métodos actualizarTabla* implementados
+- [x] Notificación de cambios en modelos - JOptionPane para feedback
+- [x] Sincronización vista-modelo - actualización tras operaciones exitosas
 
 ## 📝 Validaciones Específicas
 
@@ -143,7 +148,7 @@
 ## 🚀 Entrega y Configuración
 
 ### Repositorio
-- [ ] Fork del repositorio original
+- [x] Fork del repositorio original - proyecto configurado
 - [ ] Commits de todos los integrantes
 - [ ] README.md con nombres y NRC
 - [ ] Enlace enviado por Brightspace
@@ -152,4 +157,4 @@
 - [x] Arquitectura MVC implementada - controladores, modelo y vista separados
 - [x] Archivo Main separado - Main.java implementado
 - [x] Organización clara de paquetes - core.controller, core.model, core.view, main
-- [ ] Documentación actualizada
+- [x] Documentación actualizada - REQUERIMIENTOS.md completo
