@@ -42,23 +42,8 @@ public class MegaferiaDataStore {
         return false;
     }
     
-    List<Stand> getRawStands() {  // solo para controladores
-       return stands;
-    }
-    public List<Stand> getStandsOrderedById() {
-
-        List<Stand> ordered = new ArrayList<>(stands);
-
-        for (int i = 0; i < ordered.size(); i++) {
-            for (int j = i + 1; j < ordered.size(); j++) {
-                if (ordered.get(i).getId() > ordered.get(j).getId()) {
-                    Stand aux = ordered.get(i);
-                    ordered.set(i, ordered.get(j));
-                    ordered.set(j, aux);
-                }
-            }
-        }
-        return ordered;
+    public List<Stand> getStands() {
+        return new ArrayList<>(stands);
     }
 
   
@@ -86,19 +71,8 @@ public class MegaferiaDataStore {
         return null;
     }
 
-    public List<Person> getPeopleOrderedById() {
-        List<Person> ordered = new ArrayList<>(people);
-
-        for (int i = 0; i < ordered.size(); i++) {
-            for (int j = i + 1; j < ordered.size(); j++) {
-                if (ordered.get(i).getId() > ordered.get(j).getId()) {
-                    Person aux = ordered.get(i);
-                    ordered.set(i, ordered.get(j));
-                    ordered.set(j, aux);
-                }
-            }
-        }
-        return ordered;
+    public List<Person> getPeople() {
+        return new ArrayList<>(people);
     }
 
     // ======== EDITORIALES ========
@@ -124,20 +98,8 @@ public class MegaferiaDataStore {
         return null;
     }
 
-    public List<Publisher> getPublishersOrderedByNit() {
-        List<Publisher> ordered = new ArrayList<>(publishers);
-
-        for (int i = 0; i < ordered.size(); i++) {
-            for (int j = i + 1; j < ordered.size(); j++) {
-                // Comparación lexicográfica sin Comparator
-                if (ordered.get(i).getNit().compareTo(ordered.get(j).getNit()) > 0) {
-                    Publisher aux = ordered.get(i);
-                    ordered.set(i, ordered.get(j));
-                    ordered.set(j, aux);
-                }
-            }
-        }
-        return ordered;
+    public List<Publisher> getPublishers() {
+        return new ArrayList<>(publishers);
     }
 
     // ======== LIBROS ========

@@ -9,9 +9,8 @@ package core.controller;
  * @author keinerthd
  */
 import core.controller.utils.Response;
-import core.model.MegaferiaDataStore;
-import core.model.Stand;
-import core.model.Publisher;
+import core.controller.utils.SortUtils;
+import core.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,24 +49,9 @@ public class StandController {
         return Response.ok("Stand creado correctamente", copy);
     }
 
-    // Obtener stands ordenados por id
     public Response<List<Stand>> obtenerStands() {
-        List<Stand> stands = store.getStandsOrderedById();
-
-        // crear copias con sus editoriales
-        List<Stand> copies = new ArrayList<>();
-        for (Stand s : stands) {
-            Stand copy = new Stand(s.getId(), s.getPrice());
-
-            if (s.getPublishers() != null) {
-                for (Publisher p : s.getPublishers()) {
-                    copy.addPublisher(p);  
-                }
-            }
-
-            copies.add(copy);
-        }
-
-        return Response.ok(copies);
+        List<Stand> stands = store.getStands();
+        ArrayList<Stand> sortedStands = SortUtils.getSortedStandsById(new ArrayList<>(stands));
+        return Response.ok(sortedStands);
     }
 }

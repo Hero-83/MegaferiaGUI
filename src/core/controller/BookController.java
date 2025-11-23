@@ -5,15 +5,10 @@
 package core.controller;
 
 import core.controller.utils.Response;
-import core.model.Author;
-import core.model.Audiobook;
-import core.model.Book;
-import core.model.DigitalBook;
-import core.model.MegaferiaDataStore;
-import core.model.Narrator;
-import core.model.Person;
-import core.model.PrintedBook;
-import core.model.Publisher;
+import core.controller.utils.SortUtils;
+import core.controller.utils.ValidationUtils;
+import core.controller.utils.FormatValidator;
+import core.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,31 +28,7 @@ public class BookController {
 
     // ===== Helpers =====
 
-    // ISBN: XXX-X-XX-XXXXXX-X
-    private boolean isValidIsbnFormat(String isbn) {
-        if (isbn == null || isbn.length() != 17) return false;
 
-        // 3 dígitos
-        for (int i = 0; i < 3; i++) if (!Character.isDigit(isbn.charAt(i))) return false;
-        if (isbn.charAt(3) != '-') return false;
-
-        // 1 dígito
-        if (!Character.isDigit(isbn.charAt(4))) return false;
-        if (isbn.charAt(5) != '-') return false;
-
-        // 2 dígitos
-        for (int i = 6; i < 8; i++) if (!Character.isDigit(isbn.charAt(i))) return false;
-        if (isbn.charAt(8) != '-') return false;
-
-        // 6 dígitos
-        for (int i = 9; i < 15; i++) if (!Character.isDigit(isbn.charAt(i))) return false;
-        if (isbn.charAt(15) != '-') return false;
-
-        // ultimo dígito
-        if (!Character.isDigit(isbn.charAt(16))) return false;
-
-        return true;
-    }
 
     // Resuelve IDs de autores: objetos Author, validando existencia y repetidos
     private Response<List<Author>> resolverAutores(List<Long> authorIds) {
@@ -89,31 +60,26 @@ public class BookController {
         return Response.ok(authors);
     }
 
-    // Validaciones comunes
     private Response<Void> validarDatosBasicosLibro(String title, String isbn, String genre,
                                                     String format, double value, String publisherNit) {
 
-        if (title == null || title.trim().isEmpty()) {
+        if (!FormatValidator.isNotEmpty(title)) {
             return Response.badRequest("El título no debe estar vacío.");
         }
 
-        if (isbn == null || isbn.trim().isEmpty()) {
-            return Response.badRequest("El ISBN no debe estar vacío.");
-        }
-
-        if (!isValidIsbnFormat(isbn)) {
+        if (!FormatValidator.isValidISBN(isbn)) {
             return Response.badRequest("El ISBN debe tener el formato XXX-X-XX-XXXXXX-X.");
         }
 
-        if (store.existsBookByIsbn(isbn)) {
+        if (!ValidationUtils.isUniqueISBN(isbn, new ArrayList<>(store.getBooks()))) {
             return Response.badRequest("Ya existe un libro con ese ISBN.");
         }
 
-        if (genre == null || genre.trim().isEmpty()) {
+        if (!FormatValidator.isNotEmpty(genre)) {
             return Response.badRequest("El género no debe estar vacío.");
         }
 
-        if (format == null || format.trim().isEmpty()) {
+        if (!FormatValidator.isNotEmpty(format)) {
             return Response.badRequest("El formato no debe estar vacío.");
         }
 
@@ -121,7 +87,7 @@ public class BookController {
             return Response.badRequest("El valor del libro debe ser mayor que 0.");
         }
 
-        if (publisherNit == null || publisherNit.trim().isEmpty()) {
+        if (!FormatValidator.isNotEmpty(publisherNit)) {
             return Response.badRequest("Debe seleccionar una editorial.");
         }
 
@@ -271,8 +237,17 @@ public class BookController {
     // ===== Consultas =====
 
     public Response<List<Book>> obtenerLibrosPorTipo(Class<? extends Book> tipo) {
-        List<Book> books = store.getBooksByFormat(tipo);
-        return Response.ok(books);
+        List<Book> allBooks = store.getBooks();
+        ArrayList<Book> filteredBooks = new ArrayList<>();
+        
+        for (Book book : allBooks) {
+            if (tipo.isInstance(book)) {
+                filteredBooks.add(book);
+            }
+        }
+        
+        ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(filteredBooks);
+        return Response.ok(sortedBooks);
     }
 
     public Response<List<Book>> obtenerLibrosPorAutor(long authorId) {
@@ -282,26 +257,37 @@ public class BookController {
         }
 
         Author author = (Author) p;
-        List<Book> books = store.getBooksByAuthor(author);
-        return Response.ok(books);
-    }
-
-    // por formato String (por ejemplo "Impreso", "Digital", etc.)
-    public Response<List<Book>> obtenerLibrosPorFormato(String formato) {
-        List<Book> all = store.getBooksOrderedByIsbn();
-        List<Book> result = new ArrayList<>();
-
-        for (Book b : all) {
-            if (b.getFormat() != null && b.getFormat().equalsIgnoreCase(formato)) {
-                result.add(b);
+        List<Book> allBooks = store.getBooks();
+        ArrayList<Book> authorBooks = new ArrayList<>();
+        
+        for (Book book : allBooks) {
+            if (book.getAuthors().contains(author)) {
+                authorBooks.add(book);
             }
         }
+        
+        ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(authorBooks);
+        return Response.ok(sortedBooks);
+    }
 
-        return Response.ok(result);
+    public Response<List<Book>> obtenerLibrosPorFormato(String formato) {
+        List<Book> allBooks = store.getBooks();
+        ArrayList<Book> filteredBooks = new ArrayList<>();
+
+        for (Book book : allBooks) {
+            if (book.getFormat() != null && book.getFormat().equalsIgnoreCase(formato)) {
+                filteredBooks.add(book);
+            }
+        }
+        
+        ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(filteredBooks);
+        return Response.ok(sortedBooks);
     }
 
     public Response<List<Book>> obtenerTodosLosLibros() {
-        return Response.ok(store.getBooksOrderedByIsbn());
+        List<Book> allBooks = store.getBooks();
+        ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(new ArrayList<>(allBooks));
+        return Response.ok(sortedBooks);
     }
 }
 

@@ -54,19 +54,18 @@ public class PurchaseController {
 
         // Buscar stands
         List<Stand> standsSeleccionados = new ArrayList<>();
-        List<Stand> allStands = store.getStandsOrderedById();
         for (Long id : standIds) {
-            Stand encontrado = null;
+            if (!store.existsStandById(id)) {
+                return Response.badRequest("El stand con ID " + id + " no existe.");
+            }
+            // Buscar el stand en la lista
+            List<Stand> allStands = store.getStands();
             for (Stand s : allStands) {
                 if (s.getId() == id) {
-                    encontrado = s;
+                    standsSeleccionados.add(s);
                     break;
                 }
             }
-            if (encontrado == null) {
-                return Response.badRequest("El stand con ID " + id + " no existe.");
-            }
-            standsSeleccionados.add(encontrado);
         }
 
         // Buscar editoriales

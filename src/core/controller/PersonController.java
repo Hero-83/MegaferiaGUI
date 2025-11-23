@@ -7,7 +7,7 @@ import core.model.Manager;
 import core.model.MegaferiaDataStore;
 import core.model.Narrator;
 import core.model.Person;
-import core.controller.SortUtils;
+import core.controller.utils.SortUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,53 +89,55 @@ public class PersonController {
     // ===== Consultas =====
     // Todas las personas ordenadas por id
     public Response<List<Person>> obtenerPersonas() {
-        List<Person> people = store.getPeopleOrderedById();
-
-        // (si quieres cumplir Prototype 100% puedes hacer copias aquí)
-        return Response.ok(people);
+        List<Person> people = store.getPeople();
+        ArrayList<Person> sortedPeople = SortUtils.getSortedPersonsById(new ArrayList<>(people));
+        return Response.ok(sortedPeople);
     }
 
     public Response<List<Author>> obtenerAutores() {
-        List<Person> people = store.getPeopleOrderedById();
-        List<Author> authors = new ArrayList<>();
+        List<Person> people = store.getPeople();
+        ArrayList<Author> authors = new ArrayList<>();
 
         for (Person p : people) {
             if (p instanceof Author) {
                 authors.add((Author) p);
             }
         }
-
-        return Response.ok(authors);
+        
+        ArrayList<Person> sortedAuthors = SortUtils.getSortedPersonsById(authors);
+        return Response.ok((List<Author>) (List<?>) sortedAuthors);
     }
 
     public Response<List<Manager>> obtenerGerentes() {
-        List<Person> people = store.getPeopleOrderedById();
-        List<Manager> managers = new ArrayList<>();
+        List<Person> people = store.getPeople();
+        ArrayList<Manager> managers = new ArrayList<>();
 
         for (Person p : people) {
             if (p instanceof Manager) {
                 managers.add((Manager) p);
             }
         }
-
-        return Response.ok(managers);
+        
+        ArrayList<Person> sortedManagers = SortUtils.getSortedPersonsById(managers);
+        return Response.ok((List<Manager>) (List<?>) sortedManagers);
     }
 
     public Response<List<Narrator>> obtenerNarradores() {
-        List<Person> people = store.getPeopleOrderedById();
-        List<Narrator> narrators = new ArrayList<>();
+        List<Person> people = store.getPeople();
+        ArrayList<Narrator> narrators = new ArrayList<>();
 
         for (Person p : people) {
             if (p instanceof Narrator) {
                 narrators.add((Narrator) p);
             }
         }
-
-        return Response.ok(narrators);
+        
+        ArrayList<Person> sortedNarrators = SortUtils.getSortedPersonsById(narrators);
+        return Response.ok((List<Narrator>) (List<?>) sortedNarrators);
     }
     
     public Response<List<Author>> obtenerAutoresConMasLibros() {
-        List<Person> people = store.getPeopleOrderedById();
+        List<Person> people = store.getPeople();
         ArrayList<Author> authors = new ArrayList<>();
 
         for (Person p : people) {
