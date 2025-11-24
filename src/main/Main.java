@@ -23,7 +23,7 @@ public class Main {
         PersonController personCtrl = new PersonController(store);
         PublisherController publisherCtrl = new PublisherController(store, store);
         BookController bookCtrl = new BookController(store, store, store);
-        PurchaseController purchaseCtrl = new PurchaseController();
+        PurchaseController purchaseCtrl = new PurchaseController(store, store);
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
