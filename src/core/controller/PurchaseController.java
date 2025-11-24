@@ -15,8 +15,6 @@ import java.util.List;
  *
  * @author keinerthd
  */
-
-
 public class PurchaseController {
 
     private MegaferiaDataStore store;
@@ -68,6 +66,15 @@ public class PurchaseController {
             }
         }
 
+        // Evitar que una editorial pueda comprar un stand ya comprado por otra editorial
+        for (Stand stand : standsSeleccionados) {
+            if (!stand.getPublishers().isEmpty()) {  
+                return Response.badRequest(
+                        "El stand con ID " + stand.getId() + " ya fue comprado por otra editorial."
+                );
+            }
+        }
+
         // Buscar editoriales
         List<Publisher> publishersSeleccionadas = new ArrayList<>();
         for (String nit : publisherNits) {
@@ -77,8 +84,7 @@ public class PurchaseController {
             }
             publishersSeleccionadas.add(p);
         }
-        
-        
+
         // Vincular: cada stand con cada editorial
         for (Stand stand : standsSeleccionados) {
             for (Publisher publisher : publishersSeleccionadas) {
