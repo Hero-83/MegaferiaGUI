@@ -4,4 +4,4 @@ INTEGRANTES
 
 - Keinerth Yarid De La Hoz Gomez, NRC: 2462
 - Eissan Libardo Charris Meriño, NRC: 2460
-- 
+- Antonio Gabriel Barandica Escorcia NRC: 2460
