@@ -11,15 +11,16 @@ package core.controller;
 import core.controller.utils.Response;
 import core.controller.utils.SortUtils;
 import core.model.*;
+import core.model.repository.StandRepository;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StandController {
 
-    private MegaferiaDataStore store;
+    private StandRepository store;
 
-    public StandController() {
-        this.store = MegaferiaDataStore.getInstance();
+    public StandController(StandRepository store) {
+        this.store = store;
     }
 
     // Crear un stand

@@ -8,7 +8,18 @@ import core.controller.utils.Response;
 import core.controller.utils.SortUtils;
 import core.controller.utils.ValidationUtils;
 import core.controller.utils.FormatValidator;
-import core.model.*;
+import core.model.Author;
+import core.model.Audiobook;
+import core.model.Book;
+import core.model.DigitalBook;
+import core.model.Manager;
+import core.model.Narrator;
+import core.model.Person;
+import core.model.PrintedBook;
+import core.model.Publisher;
+import core.model.repository.BookRepository;
+import core.model.repository.PersonRepository;
+import core.model.repository.PublisherRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +27,19 @@ import java.util.List;
  *
  * @author keinerthd
  */
-
-
 public class BookController {
 
-    private MegaferiaDataStore store;
+    private final BookRepository bookStore;
+    private final PersonRepository personStore;
+    private final PublisherRepository publisherStore;
 
-    public BookController() {
-        this.store = MegaferiaDataStore.getInstance();
+    public BookController(BookRepository bookStore,PersonRepository personStore, PublisherRepository publisherStore) {
+        this.bookStore = bookStore;
+        this.personStore = personStore;
+        this.publisherStore = publisherStore;
     }
 
     // ===== Helpers =====
-
-
-
     // Resuelve IDs de autores: objetos Author, validando existencia y repetidos
     private Response<List<Author>> resolverAutores(List<Long> authorIds) {
         if (authorIds == null || authorIds.isEmpty()) {
@@ -50,7 +60,7 @@ public class BookController {
             }
             usedIds.add(id);
 
-            Person p = store.findPersonById(id);
+            Person p = personStore.findPersonById(id);
             if (p == null || !(p instanceof Author)) {
                 return Response.badRequest("El autor con ID " + id + " no es válido.");
             }
@@ -61,7 +71,7 @@ public class BookController {
     }
 
     private Response<Void> validarDatosBasicosLibro(String title, String isbn, String genre,
-                                                    String format, double value, String publisherNit) {
+            String format, double value, String publisherNit) {
 
         if (!FormatValidator.isNotEmpty(title)) {
             return Response.badRequest("El título no debe estar vacío.");
@@ -71,7 +81,7 @@ public class BookController {
             return Response.badRequest("El ISBN debe tener el formato XXX-X-XX-XXXXXX-X.");
         }
 
-        if (!ValidationUtils.isUniqueISBN(isbn, new ArrayList<>(store.getBooks()))) {
+        if (!ValidationUtils.isUniqueISBN(isbn, new ArrayList<>(bookStore.getBooks()))) {
             return Response.badRequest("Ya existe un libro con ese ISBN.");
         }
 
@@ -91,7 +101,7 @@ public class BookController {
             return Response.badRequest("Debe seleccionar una editorial.");
         }
 
-        Publisher publisher = store.findPublisherByNit(publisherNit);
+        Publisher publisher = publisherStore.findPublisherByNit(publisherNit);
         if (publisher == null) {
             return Response.badRequest("La editorial no es válida.");
         }
@@ -100,7 +110,6 @@ public class BookController {
     }
 
     // ===== Crear libros =====
-
     public Response<Void> crearLibroImpreso(
             String title,
             List<Long> authorIds,
@@ -117,13 +126,17 @@ public class BookController {
         }
 
         Response<Void> validBasics = validarDatosBasicosLibro(title, isbn, genre, format, value, publisherNit);
-        if (!validBasics.isOk()) return validBasics;
+        if (!validBasics.isOk()) {
+            return validBasics;
+        }
 
         Response<List<Author>> resAutores = resolverAutores(authorIds);
-        if (!resAutores.isOk()) return Response.badRequest(resAutores.getMessage());
+        if (!resAutores.isOk()) {
+            return Response.badRequest(resAutores.getMessage());
+        }
         List<Author> authors = resAutores.getData();
 
-        Publisher publisher = store.findPublisherByNit(publisherNit);
+        Publisher publisher = publisherStore.findPublisherByNit(publisherNit);
 
         PrintedBook book = new PrintedBook(
                 title,
@@ -138,7 +151,7 @@ public class BookController {
         );
 
         // Relacionar
-        store.addBook(book);
+        bookStore.addBook(book);
         publisher.addBook(book);
         for (Author a : authors) {
             a.addBook(book);
@@ -158,13 +171,17 @@ public class BookController {
             String hyperlink) {
 
         Response<Void> validBasics = validarDatosBasicosLibro(title, isbn, genre, format, value, publisherNit);
-        if (!validBasics.isOk()) return validBasics;
+        if (!validBasics.isOk()) {
+            return validBasics;
+        }
 
         Response<List<Author>> resAutores = resolverAutores(authorIds);
-        if (!resAutores.isOk()) return Response.badRequest(resAutores.getMessage());
+        if (!resAutores.isOk()) {
+            return Response.badRequest(resAutores.getMessage());
+        }
         List<Author> authors = resAutores.getData();
 
-        Publisher publisher = store.findPublisherByNit(publisherNit);
+        Publisher publisher = publisherStore.findPublisherByNit(publisherNit);
 
         DigitalBook book;
         if (hyperlink == null || hyperlink.trim().isEmpty()) {
@@ -173,7 +190,7 @@ public class BookController {
             book = new DigitalBook(title, new ArrayList<>(authors), isbn, genre, format, value, publisher, hyperlink);
         }
 
-        store.addBook(book);
+        bookStore.addBook(book);
         publisher.addBook(book);
         for (Author a : authors) {
             a.addBook(book);
@@ -198,15 +215,19 @@ public class BookController {
         }
 
         Response<Void> validBasics = validarDatosBasicosLibro(title, isbn, genre, format, value, publisherNit);
-        if (!validBasics.isOk()) return validBasics;
+        if (!validBasics.isOk()) {
+            return validBasics;
+        }
 
         Response<List<Author>> resAutores = resolverAutores(authorIds);
-        if (!resAutores.isOk()) return Response.badRequest(resAutores.getMessage());
+        if (!resAutores.isOk()) {
+            return Response.badRequest(resAutores.getMessage());
+        }
         List<Author> authors = resAutores.getData();
 
-        Publisher publisher = store.findPublisherByNit(publisherNit);
+        Publisher publisher = publisherStore.findPublisherByNit(publisherNit);
 
-        Person p = store.findPersonById(narratorId);
+        Person p = personStore.findPersonById(narratorId);
         if (p == null || !(p instanceof Narrator)) {
             return Response.badRequest("El narrador debe ser válido.");
         }
@@ -224,7 +245,7 @@ public class BookController {
                 narrator
         );
 
-        store.addBook(book);
+        bookStore.addBook(book);
         publisher.addBook(book);
         for (Author a : authors) {
             a.addBook(book);
@@ -235,43 +256,42 @@ public class BookController {
     }
 
     // ===== Consultas =====
-
     public Response<List<Book>> obtenerLibrosPorTipo(Class<? extends Book> tipo) {
-        List<Book> allBooks = store.getBooks();
+        List<Book> allBooks = bookStore.getBooks();
         ArrayList<Book> filteredBooks = new ArrayList<>();
-        
+
         for (Book book : allBooks) {
             if (tipo.isInstance(book)) {
                 filteredBooks.add(book);
             }
         }
-        
+
         ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(filteredBooks);
         return Response.ok(sortedBooks);
     }
 
     public Response<List<Book>> obtenerLibrosPorAutor(long authorId) {
-        Person p = store.findPersonById(authorId);
+        Person p = personStore.findPersonById(authorId);
         if (p == null || !(p instanceof Author)) {
             return Response.badRequest("El autor no es válido.");
         }
 
         Author author = (Author) p;
-        List<Book> allBooks = store.getBooks();
+        List<Book> allBooks = bookStore.getBooks();
         ArrayList<Book> authorBooks = new ArrayList<>();
-        
+
         for (Book book : allBooks) {
             if (book.getAuthors().contains(author)) {
                 authorBooks.add(book);
             }
         }
-        
+
         ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(authorBooks);
         return Response.ok(sortedBooks);
     }
 
     public Response<List<Book>> obtenerLibrosPorFormato(String formato) {
-        List<Book> allBooks = store.getBooks();
+        List<Book> allBooks = bookStore.getBooks();
         ArrayList<Book> filteredBooks = new ArrayList<>();
 
         for (Book book : allBooks) {
@@ -279,15 +299,14 @@ public class BookController {
                 filteredBooks.add(book);
             }
         }
-        
+
         ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(filteredBooks);
         return Response.ok(sortedBooks);
     }
 
     public Response<List<Book>> obtenerTodosLosLibros() {
-        List<Book> allBooks = store.getBooks();
+        List<Book> allBooks = bookStore.getBooks();
         ArrayList<Book> sortedBooks = SortUtils.getSortedBooksByISBN(new ArrayList<>(allBooks));
         return Response.ok(sortedBooks);
     }
 }
-

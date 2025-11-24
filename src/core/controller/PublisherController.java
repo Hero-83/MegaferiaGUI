@@ -9,6 +9,8 @@ import core.controller.utils.SortUtils;
 import core.controller.utils.ValidationUtils;
 import core.controller.utils.FormatValidator;
 import core.model.*;
+import core.model.repository.PersonRepository;
+import core.model.repository.PublisherRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +20,12 @@ import java.util.List;
  */
 public class PublisherController {
 
-    private MegaferiaDataStore store;
-
-    public PublisherController() {
-        this.store = MegaferiaDataStore.getInstance();
+    private PublisherRepository store;
+    private PersonRepository personStore;
+    
+    public PublisherController(PublisherRepository store, PersonRepository personStore) {
+        this.store = store;           
+        this.personStore = personStore;
     }
 
 
@@ -44,7 +48,7 @@ public class PublisherController {
             return Response.badRequest("La dirección de la editorial no debe estar vacía.");
         }
 
-        Person p = store.findPersonById(managerId);
+        Person p = personStore.findPersonById(managerId);
         if (p == null || !(p instanceof Manager)) {
             return Response.badRequest("El gerente debe existir y ser un gerente válido.");
         }

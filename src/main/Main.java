@@ -6,6 +6,8 @@ package main;
 
 import core.controller.*;
 import core.view.MegaferiaFrame;
+import core.model.MegaferiaDataStore;
+
 
 /**
  *
@@ -15,10 +17,12 @@ import core.view.MegaferiaFrame;
 public class Main {
     public static void main(String[] args) {
 
-        StandController standCtrl = new StandController();
-        PersonController personCtrl = new PersonController();
-        PublisherController publisherCtrl = new PublisherController();
-        BookController bookCtrl = new BookController();
+        MegaferiaDataStore store = MegaferiaDataStore.getInstance();
+        
+        StandController standCtrl = new StandController(store);
+        PersonController personCtrl = new PersonController(store);
+        PublisherController publisherCtrl = new PublisherController(store, store);
+        BookController bookCtrl = new BookController(store, store, store);
         PurchaseController purchaseCtrl = new PurchaseController();
 
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -3,9 +3,9 @@ package core.controller;
 import core.controller.utils.Response;
 import core.model.Author;
 import core.model.Manager;
-import core.model.MegaferiaDataStore;
 import core.model.Narrator;
 import core.model.Person;
+import core.model.repository.PersonRepository;
 import core.controller.utils.SortUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class PersonController {
 
-    private MegaferiaDataStore store;
+    private PersonRepository store;
 
-    public PersonController() {
-        this.store = MegaferiaDataStore.getInstance();
+    public PersonController(PersonRepository store) {
+        this.store = store;
     }
 
     private Response<Void> validarPersona(long id, String firstname, String lastname) {
