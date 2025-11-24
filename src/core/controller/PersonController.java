@@ -1,4 +1,3 @@
-
 package core.controller;
 
 import core.controller.utils.Response;
@@ -51,11 +50,27 @@ public class PersonController {
         if (!valid.isOk()) {
             return valid;
         }
+        if (!isValidName(firstname)) {
+            return Response.badRequest("El nombre solo puede contener letras.");
+
+        }
+
+        if (!isValidName(lastname)) {
+            return Response.badRequest("El nombre solo puede contener letras.");
+
+        }
 
         Author author = new Author(id, firstname, lastname);
         store.addPerson(author);
 
         return Response.ok("Autor creado correctamente.", null);
+    }
+
+    private boolean isValidName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+        return name.matches("^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$");
     }
 
     // ===== Crear Gerente =====
@@ -64,6 +79,16 @@ public class PersonController {
         Response<Void> valid = validarPersona(id, firstname, lastname);
         if (!valid.isOk()) {
             return valid;
+        }
+
+        if (!isValidName(firstname)) {
+            return Response.badRequest("El nombre solo puede contener letras.");
+
+        }
+
+        if (!isValidName(lastname)) {
+            return Response.badRequest("El nombre solo puede contener letras.");
+
         }
 
         Manager manager = new Manager(id, firstname, lastname);
@@ -78,6 +103,16 @@ public class PersonController {
         Response<Void> valid = validarPersona(id, firstname, lastname);
         if (!valid.isOk()) {
             return valid;
+        }
+
+        if (!isValidName(firstname)) {
+            return Response.badRequest("El nombre solo puede contener letras.");
+
+        }
+
+        if (!isValidName(lastname)) {
+            return Response.badRequest("El nombre solo puede contener letras.");
+
         }
 
         Narrator narrator = new Narrator(id, firstname, lastname);
@@ -103,7 +138,7 @@ public class PersonController {
                 authors.add((Author) p);
             }
         }
-        
+
         ArrayList<Person> sortedAuthors = SortUtils.getSortedPersonsById(authors);
         return Response.ok((List<Author>) (List<?>) sortedAuthors);
     }
@@ -117,7 +152,7 @@ public class PersonController {
                 managers.add((Manager) p);
             }
         }
-        
+
         ArrayList<Person> sortedManagers = SortUtils.getSortedPersonsById(managers);
         return Response.ok((List<Manager>) (List<?>) sortedManagers);
     }
@@ -131,11 +166,11 @@ public class PersonController {
                 narrators.add((Narrator) p);
             }
         }
-        
+
         ArrayList<Person> sortedNarrators = SortUtils.getSortedPersonsById(narrators);
         return Response.ok((List<Narrator>) (List<?>) sortedNarrators);
     }
-    
+
     public Response<List<Author>> obtenerAutoresConMasLibros() {
         List<Person> people = store.getPeople();
         ArrayList<Author> authors = new ArrayList<>();
@@ -145,11 +180,11 @@ public class PersonController {
                 authors.add((Author) p);
             }
         }
-        
+
         ArrayList<Author> sortedAuthors = SortUtils.getSortedAuthorsByBookCount(authors);
         return Response.ok(sortedAuthors);
     }
-    
+
     public Response<List<Author>> obtenerAutoresConMasLibrosEnDiferentesEditoriales() {
         List<Person> people = store.getPeople();
         ArrayList<Author> authors = new ArrayList<>();
@@ -159,7 +194,7 @@ public class PersonController {
                 authors.add((Author) p);
             }
         }
-        
+
         // Ordenar por cantidad de editoriales diferentes (descendente)
         authors.sort((a1, a2) -> Integer.compare(a2.getPublisherQuantity(), a1.getPublisherQuantity()));
         return Response.ok(authors);
